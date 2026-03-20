@@ -1,0 +1,50 @@
+.App {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+}
+
+.App-header h1 {
+  margin: 0;
+}
+
+main {
+  padding: 20px;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.section {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.loading {
+  margin: 20px;
+  font-size: 18px;
+  color: #666;
+}
+
+.error {
+  margin: 20px;
+  font-size: 18px;
+  color: #d9534f;
+}
+
+footer {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  color: #666;
+}
