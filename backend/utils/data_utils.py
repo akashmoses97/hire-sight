@@ -1,10 +1,10 @@
 import os
 import pandas as pd
 import requests
-from utils.data_sources import GOOGLE_DRIVE_DATASETS
+from utils.data_sources import KAGGLE_DATASETS
 
 # Replace the hardcoded datasets dictionary with:
-datasets = GOOGLE_DRIVE_DATASETS
+datasets = KAGGLE_DATASETS
 # Paths for data storage
 DATA_DIR = 'data'
 if not os.path.exists(DATA_DIR):

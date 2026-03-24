@@ -37,11 +37,15 @@ hiresight/
 ├── README.md
 ├── backend/
 │   ├── app.py
+│   ├── data_store.py
 │   ├── requirements.txt
 │   ├── data/
 │   │   └── .gitkeep
 │   ├── models/
 │   │   └── data_models.py
+│   ├── routers/
+│   │   ├── data_router.py
+│   │   └── viz_router.py
 │   ├── services/
 │   │   ├── data_service.py
 │   │   ├── pipeline_service.py
@@ -75,14 +79,18 @@ hiresight/
 ## Component Responsibilities
 
 ### Backend
-- **app.py**: FastAPI application defining API endpoints for the job pipeline visualizations [1]
+- **app.py**: FastAPI application with router setup for API endpoints
+- **data_store.py**: Global data storage for loaded datasets
+- **routers/**:
+  - **data_router.py**: API endpoints for raw CSV data access
+  - **viz_router.py**: API endpoints for processed visualization data
 - **models/data_models.py**: Defines data structures for API responses
 - **services/**:
-  - **pipeline_service.py**: Processes pipeline data (Applications → Callbacks → Interviews → Offers) 
+  - **pipeline_service.py**: Processes pipeline data (Applications → Callbacks → Interviews → Offers) [1]
   - **timeline_service.py**: Manages application timeline data
-  - **trends_service.py**: Handles yearly trends and role conversion rates 
+  - **trends_service.py**: Handles yearly trends and role conversion rates [2]
 - **utils/data_sources.py**: Manages access to data sources from Google Drive
-
+- **utils/data_utils.py**: Handles downloading and loading CSV data from Google Drive
 ### Frontend
 - **components/Home.js**: Homepage with navigation tiles to different visualizations
 - **components/PipelinePage.js**: Page displaying job search pipeline (Sankey diagram and timeline)
@@ -96,7 +104,7 @@ hiresight/
 
 ## Data Flow
 1. Backend fetches and processes CSV datasets from Google Drive
-2. API endpoints serve visualization-specific data
+2. API endpoints serve both raw data and processed visualization-specific data
 3. Frontend homepage allows navigation to individual visualization pages
 4. Each page retrieves and renders data with D3.js
 

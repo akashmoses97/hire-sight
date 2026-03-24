@@ -4,7 +4,7 @@ This file contains links and information about the datasets used in the project.
 """
 
 # Dictionary containing information about each dataset
-GOOGLE_DRIVE_DATASETS = {
+KAGGLE_DATASETS = {
     'job_applications': {
         'name': 'Job Applications Tracker Dataset',
         'gdrive_id': '12aCklFwpFnK2SrBdT7CY2ZyqTdYEqUrY',
@@ -30,12 +30,12 @@ def get_dataset_info(dataset_key):
     Returns information about a specific dataset
     
     Args:
-        dataset_key: Key for the dataset in the GOOGLE_DRIVE_DATASETS dictionary
+        dataset_key: Key for the dataset in the KAGGLE_DATASETS dictionary
         
     Returns:
         Dictionary containing dataset information or None if not found
     """
-    return GOOGLE_DRIVE_DATASETS.get(dataset_key)
+    return KAGGLE_DATASETS.get(dataset_key)
 
 def get_all_datasets():
     """
@@ -44,4 +44,4 @@ def get_all_datasets():
     Returns:
         Dictionary containing all dataset information
     """
-    return GOOGLE_DRIVE_DATASETS
+    return KAGGLE_DATASETS
