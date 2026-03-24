@@ -53,7 +53,7 @@ wheels/
 .installed.cfg
 *.egg
 
-# Kaggle datasets
+# Downloaded data files
 backend/data/*
 !backend/data/.gitkeep
 

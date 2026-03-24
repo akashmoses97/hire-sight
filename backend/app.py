@@ -27,11 +27,10 @@ all_data = {}
 
 @app.on_event("startup")
 async def startup_event():
-    """Load datasets on startup - placeholder for Kaggle integration"""
+    """Load datasets on startup from Google Drive"""
     global all_data
     try:
-        # Placeholder: This would download and load Kaggle datasets
-        # For now, we'll use sample data
+        # Download and load datasets from Google Drive
         all_data = download_and_load_datasets()
     except Exception as e:
         print(f"Error loading datasets: {e}")

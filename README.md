@@ -48,8 +48,8 @@ hiresight/
 │   │   ├── timeline_service.py
 │   │   └── trends_service.py
 │   └── utils/
-│       ├── kaggle_utils.py
-│       └── kaggle_sources.py
+│       ├── data_sources.py
+│       └── data_utils.py
 ├── frontend/
 │   ├── package.json
 │   ├── .gitignore
@@ -78,24 +78,27 @@ hiresight/
 - **app.py**: FastAPI application defining API endpoints for the job pipeline visualizations [1]
 - **models/data_models.py**: Defines data structures for API responses
 - **services/**:
-  - **pipeline_service.py**: Processes pipeline data (Applications → Callbacks → Interviews → Offers) [1]
+  - **pipeline_service.py**: Processes pipeline data (Applications → Callbacks → Interviews → Offers) 
   - **timeline_service.py**: Manages application timeline data
-  - **trends_service.py**: Handles yearly trends and role conversion rates [2]
-- **utils/kaggle_sources.py**: Manages access to the Kaggle datasets [2]
+  - **trends_service.py**: Handles yearly trends and role conversion rates 
+- **utils/data_sources.py**: Manages access to data sources from Google Drive
 
 ### Frontend
-- **components/Dashboard.js**: Main container integrating all visualizations
-- **components/SankeyDiagram.js**: Visualizes job application flow through pipeline stages [1]
-- **components/HeatMap.js**: Shows role-based conversion rates [2]
+- **components/Home.js**: Homepage with navigation tiles to different visualizations
+- **components/PipelinePage.js**: Page displaying job search pipeline (Sankey diagram and timeline)
+- **components/HeatmapPage.js**: Page displaying role-based conversion heatmap
+- **components/TrendsPage.js**: Page displaying yearly hiring trends
+- **components/SankeyDiagram.js**: Visualizes job application flow through pipeline stages 
+- **components/HeatMap.js**: Shows role-based conversion rates 
 - **components/TimelineChart.js**: Displays application activity over time
-- **components/YearlyTrendChart.js**: Presents hiring trends across years [2]
+- **components/YearlyTrendChart.js**: Presents hiring trends across years 
 - **utils/api.js**: Handles backend API communication
 
 ## Data Flow
-1. Backend processes Kaggle datasets [2]
+1. Backend fetches and processes CSV datasets from Google Drive
 2. API endpoints serve visualization-specific data
-3. Frontend retrieves and renders data with D3.js
-4. User filters (by role/year) update visualizations
+3. Frontend homepage allows navigation to individual visualization pages
+4. Each page retrieves and renders data with D3.js
 
 This architecture separates data processing from visualization, supporting the project's goal of transforming job search tracking into structured visual exploration [1][2].
 
@@ -110,7 +113,7 @@ This architecture separates data processing from visualization, supporting the p
 
 2. Create a Python virtual environment:
    ```bash
-   python -m venv venv
+   python3 -m venv venv
    source venv/bin/activate
    ```
 
@@ -119,17 +122,12 @@ This architecture separates data processing from visualization, supporting the p
    pip install -r requirements.txt
    ```
 
-4. Set up Kaggle API credentials:
-   - Download your kaggle.json from your Kaggle account settings
-   - Place it in ~/.kaggle/ directory (create if it doesn't exist)
-   - Set permissions: `chmod 600 ~/.kaggle/kaggle.json`
-
-5. Run the FastAPI server:
+4. Run the FastAPI server:
    ```bash
    uvicorn app:app --reload
    ```
 
-6. Access the API documentation at http://localhost:8000/docs
+5. Access the API documentation at http://localhost:8000/docs
 
 ### Frontend
 
@@ -152,9 +150,9 @@ This architecture separates data processing from visualization, supporting the p
 
 ## Data Sources
 
-- [Job Applications Tracker Dataset (Kaggle)](https://www.kaggle.com/datasets/prince7489/job-applications-tracker-dataset)
-- [AI Recruitment Pipeline Dataset (Kaggle)](https://www.kaggle.com/datasets/yaswanthkumary/ai-recruitment-pipeline-dataset)
-- [Job Market Insight Dataset (Kaggle)](https://www.kaggle.com/datasets/shaistashahid/job-market-insight)
+- Job Applications Tracker Dataset (hosted on Google Drive)
+- AI Recruitment Pipeline Dataset (hosted on Google Drive)
+- Job Market Insight Dataset (hosted on Google Drive)
 
 ## Tech Stack
 
