@@ -1,0 +1,501 @@
+application_id,company_name,job_role,application_date,job_type,platform,status,salary_expectation,experience_required_years,company_rating
+1,Spotify,Data Analyst,2024-04-01,Full-time,Company Website,Selected,133555,0,2.8
+2,Netflix,Frontend Developer,2024-03-15,Internship,LinkedIn,Applied,137539,2,2.8
+3,Uber,Data Analyst,2024-01-04,Internship,Indeed,Assessment Pending,48313,3,2.8
+4,OpenAI,Data Analyst,2024-03-19,Full-time,LinkedIn,Applied,143175,4,2.8
+5,Spotify,Frontend Developer,2024-01-06,Full-time,Indeed,Phone Screen,96549,1,2.8
+6,Oracle,Software Engineer,2024-04-27,Full-time,Naukri,Interview Scheduled,144914,2,2.8
+7,Amazon,Data Analyst,2024-04-22,Internship,Indeed,Selected,53705,0,2.8
+8,Spotify,Frontend Developer,2024-04-03,Internship,Indeed,Phone Screen,97364,2,2.8
+9,Uber,Backend Developer,2024-04-29,Remote,Referral,Interview Scheduled,103445,2,2.8
+10,OpenAI,ML Engineer,2024-04-11,Contract,Company Website,Phone Screen,133892,2,2.8
+11,Netflix,ML Engineer,2024-02-20,Full-time,Company Website,Assessment Pending,108645,2,2.8
+12,Uber,Data Analyst,2024-03-02,Internship,Naukri,Selected,32023,1,2.8
+13,Uber,Software Engineer,2024-02-26,Internship,Naukri,Applied,149654,3,2.8
+14,Amazon,Software Engineer,2024-03-06,Full-time,Company Website,Applied,89796,4,2.8
+15,Adobe,Backend Developer,2024-03-19,Contract,Referral,Interview Scheduled,110073,2,2.8
+16,OpenAI,Data Analyst,2024-03-15,Full-time,Company Website,Rejected,122197,2,2.8
+17,Microsoft,ML Engineer,2024-01-08,Contract,Referral,Assessment Pending,94429,2,2.8
+18,Uber,Software Engineer,2024-01-26,Internship,Naukri,Interview Scheduled,134195,3,2.8
+19,Adobe,Data Analyst,2024-02-20,Contract,LinkedIn,Rejected,91627,0,2.8
+20,Microsoft,AI Research Intern,2024-02-14,Remote,Naukri,Phone Screen,63848,0,2.8
+21,OpenAI,Software Engineer,2024-02-13,Internship,Naukri,Assessment Pending,67804,1,2.8
+22,Google,Frontend Developer,2024-01-05,Remote,Indeed,Phone Screen,45379,0,2.8
+23,Oracle,AI Research Intern,2024-03-10,Full-time,Indeed,Selected,89664,2,2.8
+24,Adobe,Software Engineer,2024-01-26,Full-time,Indeed,Assessment Pending,57766,2,2.8
+25,Meta,ML Engineer,2024-04-27,Full-time,Indeed,Rejected,139126,2,2.8
+26,Google,Data Scientist,2024-03-08,Contract,Referral,Selected,98099,1,2.8
+27,Oracle,AI Research Intern,2024-01-19,Internship,Company Website,Applied,66060,2,2.8
+28,Amazon,Backend Developer,2024-03-24,Full-time,LinkedIn,Rejected,124733,0,2.8
+29,Spotify,Backend Developer,2024-04-06,Full-time,Naukri,Interview Scheduled,99122,3,2.8
+30,Netflix,ML Engineer,2024-01-20,Internship,Referral,Applied,46087,3,2.8
+31,Meta,Software Engineer,2024-04-22,Full-time,LinkedIn,Applied,78868,4,2.8
+32,Amazon,Data Analyst,2024-01-12,Remote,Referral,Interview Scheduled,149119,0,2.8
+33,OpenAI,Software Engineer,2024-02-16,Internship,Referral,Assessment Pending,53225,2,2.8
+34,Amazon,ML Engineer,2024-01-01,Internship,Naukri,Applied,125286,3,2.8
+35,Spotify,Backend Developer,2024-03-30,Internship,Company Website,Rejected,36643,0,2.8
+36,OpenAI,Software Engineer,2024-01-14,Remote,Indeed,Selected,123059,3,2.8
+37,Meta,Backend Developer,2024-03-04,Internship,Company Website,Applied,66727,2,2.8
+38,Spotify,AI Research Intern,2024-02-07,Remote,Naukri,Rejected,41005,3,2.8
+39,Microsoft,Data Analyst,2024-02-06,Internship,Naukri,Phone Screen,139079,4,2.8
+40,Netflix,AI Research Intern,2024-01-11,Contract,Naukri,Rejected,95697,4,2.8
+41,Meta,Backend Developer,2024-04-09,Full-time,LinkedIn,Selected,46029,3,2.8
+42,Microsoft,Backend Developer,2024-03-17,Contract,Company Website,Rejected,145281,0,2.8
+43,Oracle,Data Scientist,2024-04-16,Full-time,Company Website,Interview Scheduled,44226,0,2.8
+44,Meta,Data Scientist,2024-01-03,Remote,Referral,Selected,93646,0,2.8
+45,Oracle,AI Research Intern,2024-02-02,Contract,Referral,Assessment Pending,90603,3,2.8
+46,OpenAI,Frontend Developer,2024-01-06,Internship,Referral,Phone Screen,58731,0,2.8
+47,Microsoft,AI Research Intern,2024-02-19,Full-time,Naukri,Interview Scheduled,139458,2,2.8
+48,Netflix,Data Scientist,2024-04-29,Full-time,Company Website,Assessment Pending,140384,4,2.8
+49,Spotify,Backend Developer,2024-01-10,Contract,Naukri,Rejected,98926,2,2.8
+50,Uber,ML Engineer,2024-01-05,Remote,LinkedIn,Selected,35997,0,2.8
+51,Amazon,AI Research Intern,2024-01-23,Contract,Referral,Phone Screen,85506,2,2.8
+52,Google,Backend Developer,2024-01-10,Remote,Naukri,Interview Scheduled,108229,0,2.8
+53,Netflix,ML Engineer,2024-02-13,Remote,Naukri,Assessment Pending,79815,3,2.8
+54,Microsoft,ML Engineer,2024-01-02,Full-time,LinkedIn,Assessment Pending,72092,2,2.8
+55,Uber,Data Scientist,2024-01-13,Contract,Indeed,Phone Screen,92539,3,2.8
+56,Netflix,AI Research Intern,2024-02-09,Contract,Company Website,Rejected,96077,3,2.8
+57,Microsoft,Software Engineer,2024-01-02,Remote,Indeed,Phone Screen,51817,1,2.8
+58,Adobe,Data Analyst,2024-03-24,Contract,Referral,Assessment Pending,67861,0,2.8
+59,Adobe,Data Scientist,2024-03-05,Internship,Naukri,Applied,43428,4,2.8
+60,Oracle,Data Scientist,2024-03-03,Internship,LinkedIn,Interview Scheduled,73934,0,2.8
+61,Netflix,Software Engineer,2024-04-10,Contract,LinkedIn,Phone Screen,145555,4,2.8
+62,Adobe,Data Analyst,2024-03-13,Contract,Company Website,Assessment Pending,144367,0,2.8
+63,Microsoft,Backend Developer,2024-01-17,Remote,Indeed,Rejected,40258,3,2.8
+64,Oracle,Frontend Developer,2024-01-09,Internship,Company Website,Assessment Pending,87775,2,2.8
+65,Microsoft,AI Research Intern,2024-03-15,Internship,Naukri,Rejected,111580,2,2.8
+66,Oracle,Frontend Developer,2024-01-15,Full-time,Company Website,Phone Screen,124947,1,2.8
+67,Netflix,Backend Developer,2024-01-24,Remote,LinkedIn,Rejected,35469,4,2.8
+68,Uber,Data Scientist,2024-02-07,Full-time,LinkedIn,Selected,58854,4,2.8
+69,Spotify,Data Analyst,2024-04-28,Internship,Referral,Selected,36256,4,2.8
+70,Meta,Data Scientist,2024-02-04,Remote,Referral,Selected,106256,3,2.8
+71,Uber,ML Engineer,2024-04-03,Contract,Naukri,Applied,63937,4,2.8
+72,OpenAI,Data Scientist,2024-04-04,Remote,Indeed,Phone Screen,129134,2,2.8
+73,Microsoft,Data Scientist,2024-02-18,Contract,Company Website,Assessment Pending,31651,3,2.8
+74,OpenAI,Backend Developer,2024-03-09,Contract,Naukri,Assessment Pending,80288,0,2.8
+75,Uber,Backend Developer,2024-03-02,Remote,Referral,Applied,114730,4,2.8
+76,Oracle,Backend Developer,2024-02-29,Contract,Company Website,Rejected,55051,4,2.8
+77,Meta,Frontend Developer,2024-04-17,Full-time,Referral,Applied,57386,0,2.8
+78,Meta,ML Engineer,2024-02-19,Internship,Company Website,Rejected,105054,4,2.8
+79,Google,Backend Developer,2024-03-18,Contract,Indeed,Rejected,141562,0,2.8
+80,Meta,Data Analyst,2024-04-26,Full-time,Naukri,Interview Scheduled,46184,3,2.8
+81,Spotify,Frontend Developer,2024-04-29,Contract,Company Website,Assessment Pending,63787,2,2.8
+82,Meta,Software Engineer,2024-03-15,Internship,LinkedIn,Selected,51621,0,2.8
+83,Uber,Data Analyst,2024-01-09,Full-time,LinkedIn,Rejected,105564,1,2.8
+84,Google,AI Research Intern,2024-02-03,Internship,Company Website,Interview Scheduled,107984,0,2.8
+85,Uber,AI Research Intern,2024-03-16,Internship,Company Website,Assessment Pending,89792,4,2.8
+86,Uber,Data Analyst,2024-04-08,Full-time,Company Website,Selected,75253,3,2.8
+87,Amazon,Backend Developer,2024-02-04,Full-time,LinkedIn,Rejected,64051,3,2.8
+88,Google,Software Engineer,2024-01-01,Full-time,LinkedIn,Rejected,79811,0,2.8
+89,Uber,Software Engineer,2024-02-09,Remote,Company Website,Applied,60447,2,2.8
+90,Amazon,Frontend Developer,2024-03-04,Full-time,Referral,Applied,113930,1,2.8
+91,Amazon,Software Engineer,2024-01-22,Full-time,Referral,Assessment Pending,130037,3,2.8
+92,Google,AI Research Intern,2024-02-29,Full-time,Indeed,Selected,60254,4,2.8
+93,OpenAI,ML Engineer,2024-03-04,Full-time,Naukri,Rejected,114045,4,2.8
+94,Oracle,Backend Developer,2024-04-02,Contract,Referral,Assessment Pending,146859,2,2.8
+95,Spotify,Software Engineer,2024-03-12,Remote,LinkedIn,Assessment Pending,87418,3,2.8
+96,Oracle,Frontend Developer,2024-01-11,Internship,Referral,Phone Screen,144534,0,2.8
+97,Meta,AI Research Intern,2024-04-14,Full-time,Indeed,Applied,44472,4,2.8
+98,Spotify,ML Engineer,2024-04-10,Contract,Indeed,Selected,141193,2,2.8
+99,Meta,Data Scientist,2024-01-14,Contract,Naukri,Rejected,33471,3,2.8
+100,Uber,Data Scientist,2024-02-29,Contract,Referral,Assessment Pending,137332,3,2.8
+101,Microsoft,ML Engineer,2024-01-30,Internship,LinkedIn,Rejected,125804,3,2.8
+102,Google,AI Research Intern,2024-02-04,Full-time,LinkedIn,Phone Screen,38329,3,2.8
+103,Spotify,Frontend Developer,2024-03-25,Remote,Company Website,Selected,64865,3,2.8
+104,Spotify,ML Engineer,2024-02-06,Remote,LinkedIn,Assessment Pending,76850,4,2.8
+105,Uber,Backend Developer,2024-01-05,Contract,Naukri,Rejected,84220,2,2.8
+106,OpenAI,Backend Developer,2024-03-23,Internship,Naukri,Applied,142234,3,2.8
+107,Amazon,Data Scientist,2024-03-18,Internship,LinkedIn,Phone Screen,123808,1,2.8
+108,Uber,Software Engineer,2024-01-26,Internship,LinkedIn,Selected,138381,1,2.8
+109,Adobe,Frontend Developer,2024-03-02,Remote,Company Website,Phone Screen,36397,2,2.8
+110,Amazon,Data Scientist,2024-01-04,Contract,LinkedIn,Applied,127909,0,2.8
+111,Google,Software Engineer,2024-03-29,Full-time,Company Website,Selected,65525,0,2.8
+112,Amazon,Software Engineer,2024-04-18,Remote,Company Website,Phone Screen,83072,0,2.8
+113,OpenAI,Backend Developer,2024-02-11,Contract,LinkedIn,Interview Scheduled,120106,1,2.8
+114,Amazon,AI Research Intern,2024-03-29,Contract,Indeed,Applied,113820,0,2.8
+115,Google,Data Analyst,2024-01-18,Full-time,Indeed,Applied,114530,4,2.8
+116,OpenAI,AI Research Intern,2024-02-09,Full-time,Company Website,Applied,53284,3,2.8
+117,Oracle,Data Analyst,2024-03-12,Full-time,LinkedIn,Interview Scheduled,91330,1,2.8
+118,Spotify,ML Engineer,2024-02-08,Internship,Indeed,Interview Scheduled,113369,2,2.8
+119,Spotify,Backend Developer,2024-04-13,Full-time,LinkedIn,Rejected,55122,2,2.8
+120,Meta,Software Engineer,2024-01-14,Contract,LinkedIn,Assessment Pending,100553,3,2.8
+121,Oracle,Frontend Developer,2024-02-01,Full-time,LinkedIn,Phone Screen,111906,1,2.8
+122,Oracle,Data Analyst,2024-02-20,Contract,Referral,Rejected,124788,0,2.8
+123,Amazon,AI Research Intern,2024-02-07,Remote,LinkedIn,Phone Screen,92812,0,2.8
+124,Spotify,Software Engineer,2024-04-06,Internship,Referral,Assessment Pending,37999,4,2.8
+125,Google,Data Analyst,2024-01-23,Remote,Company Website,Interview Scheduled,52436,4,2.8
+126,Netflix,Data Analyst,2024-03-03,Remote,Indeed,Assessment Pending,72963,0,2.8
+127,Netflix,Data Analyst,2024-01-15,Contract,Indeed,Interview Scheduled,32096,2,2.8
+128,OpenAI,Frontend Developer,2024-04-06,Remote,Indeed,Assessment Pending,143737,2,2.8
+129,Spotify,Backend Developer,2024-01-25,Contract,Indeed,Rejected,55279,4,2.8
+130,Spotify,Frontend Developer,2024-01-17,Full-time,Indeed,Selected,138899,3,2.8
+131,Netflix,Data Scientist,2024-04-06,Full-time,Indeed,Rejected,144245,0,2.8
+132,Spotify,Software Engineer,2024-04-20,Contract,Indeed,Phone Screen,56201,4,2.8
+133,Amazon,Backend Developer,2024-04-28,Full-time,Company Website,Rejected,49715,4,2.8
+134,Adobe,Backend Developer,2024-03-06,Internship,LinkedIn,Applied,59309,0,2.8
+135,Microsoft,Backend Developer,2024-03-18,Remote,Naukri,Phone Screen,45078,0,2.8
+136,Oracle,AI Research Intern,2024-02-22,Internship,Referral,Assessment Pending,86614,2,2.8
+137,Meta,Backend Developer,2024-04-13,Remote,Naukri,Phone Screen,35105,3,2.8
+138,OpenAI,Frontend Developer,2024-04-13,Full-time,Naukri,Selected,147666,3,2.8
+139,Adobe,Backend Developer,2024-02-20,Internship,LinkedIn,Interview Scheduled,124848,0,2.8
+140,Netflix,ML Engineer,2024-02-08,Full-time,LinkedIn,Assessment Pending,32839,1,2.8
+141,Oracle,Software Engineer,2024-02-20,Remote,LinkedIn,Phone Screen,98920,4,2.8
+142,Spotify,Backend Developer,2024-03-10,Contract,Indeed,Assessment Pending,73619,4,2.8
+143,Meta,Software Engineer,2024-01-06,Contract,Company Website,Assessment Pending,72821,0,2.8
+144,Spotify,ML Engineer,2024-03-07,Internship,Indeed,Assessment Pending,43493,1,2.8
+145,Google,ML Engineer,2024-01-07,Full-time,Company Website,Interview Scheduled,47069,2,2.8
+146,Google,Software Engineer,2024-02-20,Full-time,Company Website,Rejected,142443,0,2.8
+147,Meta,Data Analyst,2024-03-12,Internship,Naukri,Assessment Pending,37531,0,2.8
+148,Meta,Data Scientist,2024-02-11,Contract,Naukri,Applied,67051,4,2.8
+149,Netflix,AI Research Intern,2024-03-04,Remote,Company Website,Selected,37736,0,2.8
+150,Meta,Data Analyst,2024-04-25,Internship,Company Website,Interview Scheduled,37710,0,2.8
+151,Amazon,Data Analyst,2024-01-15,Remote,Indeed,Phone Screen,97155,0,2.8
+152,Spotify,Frontend Developer,2024-04-20,Contract,Indeed,Interview Scheduled,43975,4,2.8
+153,Adobe,AI Research Intern,2024-01-29,Full-time,Naukri,Phone Screen,92424,2,2.8
+154,Uber,AI Research Intern,2024-02-02,Contract,LinkedIn,Interview Scheduled,75603,2,2.8
+155,Meta,Data Analyst,2024-04-25,Internship,Company Website,Phone Screen,53252,0,2.8
+156,OpenAI,Backend Developer,2024-04-03,Full-time,Indeed,Assessment Pending,110797,4,2.8
+157,Google,Frontend Developer,2024-04-12,Internship,Naukri,Rejected,31431,2,2.8
+158,Amazon,Frontend Developer,2024-01-27,Internship,Indeed,Phone Screen,104603,2,2.8
+159,Oracle,ML Engineer,2024-02-05,Contract,Company Website,Phone Screen,67481,2,2.8
+160,Uber,AI Research Intern,2024-01-29,Internship,Company Website,Applied,122573,4,2.8
+161,Adobe,Data Analyst,2024-02-07,Contract,Referral,Phone Screen,39557,4,2.8
+162,Uber,ML Engineer,2024-02-26,Full-time,LinkedIn,Applied,104971,0,2.8
+163,Meta,Software Engineer,2024-04-06,Contract,Referral,Selected,133302,3,2.8
+164,Netflix,Data Scientist,2024-04-10,Full-time,Naukri,Assessment Pending,30162,2,2.8
+165,Google,Frontend Developer,2024-01-27,Contract,Indeed,Applied,64742,3,2.8
+166,Google,Software Engineer,2024-02-24,Remote,Naukri,Rejected,49675,4,2.8
+167,Oracle,Software Engineer,2024-02-02,Remote,Company Website,Assessment Pending,103997,4,2.8
+168,Netflix,Backend Developer,2024-03-08,Internship,Referral,Applied,47015,4,2.8
+169,Spotify,Data Scientist,2024-03-26,Contract,Referral,Assessment Pending,80057,3,2.8
+170,Microsoft,Software Engineer,2024-03-06,Contract,Referral,Assessment Pending,62591,4,2.8
+171,Amazon,Software Engineer,2024-01-10,Full-time,Naukri,Assessment Pending,123583,0,2.8
+172,Google,Data Scientist,2024-01-05,Internship,Company Website,Selected,130318,4,2.8
+173,OpenAI,Data Scientist,2024-03-14,Contract,Indeed,Rejected,39833,1,2.8
+174,Google,Software Engineer,2024-04-06,Internship,Indeed,Interview Scheduled,37896,3,2.8
+175,Uber,Data Scientist,2024-04-27,Remote,Naukri,Interview Scheduled,62972,1,2.8
+176,Google,Software Engineer,2024-02-07,Contract,Referral,Applied,79733,4,2.8
+177,Google,Software Engineer,2024-01-13,Contract,LinkedIn,Assessment Pending,71800,0,2.8
+178,Microsoft,Backend Developer,2024-01-31,Internship,Naukri,Applied,126044,2,2.8
+179,Microsoft,Data Analyst,2024-02-16,Contract,Naukri,Selected,35347,4,2.8
+180,Adobe,Software Engineer,2024-04-09,Internship,Company Website,Selected,89063,0,2.8
+181,Spotify,ML Engineer,2024-04-18,Contract,Indeed,Phone Screen,125850,3,2.8
+182,OpenAI,Frontend Developer,2024-03-28,Full-time,Naukri,Selected,32643,1,2.8
+183,Google,AI Research Intern,2024-02-21,Internship,Naukri,Phone Screen,70785,1,2.8
+184,Google,Data Analyst,2024-02-25,Contract,Referral,Rejected,48681,1,2.8
+185,Amazon,Data Analyst,2024-01-15,Remote,Referral,Applied,80026,3,2.8
+186,Microsoft,Data Analyst,2024-01-29,Contract,LinkedIn,Rejected,133864,0,2.8
+187,OpenAI,Backend Developer,2024-01-08,Remote,Company Website,Selected,45892,3,2.8
+188,Oracle,Software Engineer,2024-01-05,Remote,LinkedIn,Rejected,77299,1,2.8
+189,Adobe,Backend Developer,2024-01-29,Full-time,Referral,Rejected,47073,4,2.8
+190,Spotify,Software Engineer,2024-02-16,Internship,Indeed,Rejected,132304,2,2.8
+191,Netflix,Backend Developer,2024-03-08,Contract,Referral,Selected,60682,3,2.8
+192,Spotify,Backend Developer,2024-03-16,Full-time,Company Website,Assessment Pending,127798,3,2.8
+193,Uber,Frontend Developer,2024-02-14,Contract,Referral,Rejected,126894,0,2.8
+194,Google,ML Engineer,2024-01-02,Remote,Company Website,Phone Screen,44289,0,2.8
+195,Adobe,Backend Developer,2024-01-27,Internship,Company Website,Selected,145359,3,2.8
+196,Uber,Frontend Developer,2024-04-04,Contract,Company Website,Rejected,37927,1,2.8
+197,OpenAI,Data Scientist,2024-04-24,Contract,Company Website,Assessment Pending,78330,2,2.8
+198,Netflix,ML Engineer,2024-04-24,Remote,Company Website,Selected,96707,0,2.8
+199,Microsoft,Backend Developer,2024-02-05,Contract,Indeed,Interview Scheduled,107454,1,2.8
+200,Adobe,AI Research Intern,2024-02-05,Contract,LinkedIn,Assessment Pending,137439,4,2.8
+201,Adobe,Data Analyst,2024-01-26,Remote,Naukri,Phone Screen,134646,0,2.8
+202,Google,Data Scientist,2024-02-12,Full-time,LinkedIn,Rejected,95428,1,2.8
+203,Meta,Data Scientist,2024-01-27,Remote,Company Website,Interview Scheduled,80601,1,2.8
+204,Adobe,Frontend Developer,2024-03-09,Full-time,Indeed,Interview Scheduled,107465,2,2.8
+205,Amazon,Data Scientist,2024-01-20,Internship,Referral,Selected,32539,2,2.8
+206,Netflix,ML Engineer,2024-01-11,Full-time,Indeed,Interview Scheduled,132263,4,2.8
+207,Netflix,Backend Developer,2024-03-14,Full-time,Company Website,Phone Screen,141487,1,2.8
+208,Amazon,Backend Developer,2024-04-13,Internship,Indeed,Phone Screen,52669,1,2.8
+209,Oracle,AI Research Intern,2024-02-07,Full-time,Indeed,Applied,100968,2,2.8
+210,Amazon,Data Analyst,2024-01-06,Remote,Company Website,Phone Screen,50644,0,2.8
+211,Amazon,Frontend Developer,2024-03-12,Full-time,Indeed,Assessment Pending,48745,0,2.8
+212,Netflix,Data Analyst,2024-01-23,Internship,Naukri,Interview Scheduled,58228,3,2.8
+213,Spotify,Data Scientist,2024-02-16,Remote,Naukri,Phone Screen,148358,2,2.8
+214,Netflix,AI Research Intern,2024-03-30,Internship,Indeed,Selected,64521,3,2.8
+215,Meta,Data Analyst,2024-02-15,Internship,Referral,Applied,127239,2,2.8
+216,Google,ML Engineer,2024-04-16,Contract,Company Website,Interview Scheduled,56928,4,2.8
+217,Uber,Backend Developer,2024-01-12,Contract,Naukri,Applied,48322,1,2.8
+218,Spotify,Data Scientist,2024-03-30,Internship,Referral,Interview Scheduled,87714,4,2.8
+219,Microsoft,AI Research Intern,2024-01-13,Internship,Indeed,Selected,117896,2,2.8
+220,Uber,Data Analyst,2024-04-13,Internship,Referral,Applied,92292,1,2.8
+221,Google,Frontend Developer,2024-03-02,Contract,LinkedIn,Rejected,59055,0,2.8
+222,Meta,ML Engineer,2024-03-22,Contract,Naukri,Assessment Pending,72891,0,2.8
+223,Meta,ML Engineer,2024-03-29,Full-time,Indeed,Assessment Pending,111912,3,2.8
+224,Microsoft,Data Analyst,2024-04-06,Full-time,Company Website,Interview Scheduled,36588,2,2.8
+225,Spotify,Backend Developer,2024-04-20,Internship,Indeed,Rejected,120536,2,2.8
+226,Oracle,Data Analyst,2024-04-13,Remote,Company Website,Applied,36304,0,2.8
+227,Amazon,Data Scientist,2024-02-29,Remote,Indeed,Rejected,37345,4,2.8
+228,Spotify,Data Analyst,2024-02-12,Contract,Referral,Rejected,59300,1,2.8
+229,Oracle,ML Engineer,2024-03-16,Contract,Referral,Applied,54259,4,2.8
+230,Meta,AI Research Intern,2024-04-17,Contract,Referral,Selected,121006,4,2.8
+231,Netflix,Data Analyst,2024-04-09,Internship,LinkedIn,Rejected,118553,0,2.8
+232,Google,Backend Developer,2024-04-21,Remote,Company Website,Rejected,45352,0,2.8
+233,Microsoft,AI Research Intern,2024-03-08,Full-time,Referral,Selected,63365,0,2.8
+234,Google,Frontend Developer,2024-01-05,Internship,LinkedIn,Rejected,49446,3,2.8
+235,OpenAI,Software Engineer,2024-04-29,Full-time,Company Website,Rejected,32336,4,2.8
+236,OpenAI,Data Analyst,2024-02-06,Full-time,Indeed,Rejected,92032,2,2.8
+237,Spotify,Backend Developer,2024-03-12,Internship,LinkedIn,Assessment Pending,105415,1,2.8
+238,Meta,AI Research Intern,2024-04-15,Full-time,Naukri,Phone Screen,127852,3,2.8
+239,Meta,Backend Developer,2024-04-22,Remote,LinkedIn,Selected,128876,2,2.8
+240,Amazon,Frontend Developer,2024-04-01,Full-time,LinkedIn,Rejected,37521,4,2.8
+241,Amazon,ML Engineer,2024-01-31,Remote,Company Website,Assessment Pending,101707,0,2.8
+242,Amazon,Backend Developer,2024-01-09,Remote,Indeed,Selected,53481,4,2.8
+243,Netflix,AI Research Intern,2024-04-27,Remote,Naukri,Interview Scheduled,48474,1,2.8
+244,Uber,Backend Developer,2024-02-20,Contract,Referral,Interview Scheduled,76760,3,2.8
+245,Adobe,Backend Developer,2024-01-29,Full-time,Referral,Rejected,85718,3,2.8
+246,Uber,Backend Developer,2024-03-18,Internship,LinkedIn,Assessment Pending,74629,1,2.8
+247,Google,Data Scientist,2024-02-09,Internship,Company Website,Assessment Pending,75232,2,2.8
+248,Uber,Data Scientist,2024-02-10,Full-time,Company Website,Selected,116544,2,2.8
+249,Netflix,ML Engineer,2024-03-26,Contract,Referral,Selected,97169,3,2.8
+250,Google,Data Analyst,2024-01-11,Contract,Naukri,Assessment Pending,80669,3,2.8
+251,Uber,Backend Developer,2024-01-23,Remote,Indeed,Selected,108021,0,2.8
+252,Netflix,Frontend Developer,2024-01-01,Full-time,Naukri,Assessment Pending,139153,2,2.8
+253,Adobe,Data Analyst,2024-02-15,Full-time,Indeed,Phone Screen,99184,1,2.8
+254,Uber,Frontend Developer,2024-04-10,Internship,Referral,Assessment Pending,77945,2,2.8
+255,Netflix,Data Analyst,2024-01-21,Full-time,Indeed,Interview Scheduled,43140,0,2.8
+256,Amazon,ML Engineer,2024-03-30,Contract,Company Website,Selected,113457,3,2.8
+257,Meta,Backend Developer,2024-04-19,Full-time,LinkedIn,Assessment Pending,44357,3,2.8
+258,Amazon,Backend Developer,2024-02-05,Internship,LinkedIn,Assessment Pending,141672,0,2.8
+259,Meta,Software Engineer,2024-02-23,Remote,Referral,Selected,98673,1,2.8
+260,Microsoft,Frontend Developer,2024-03-27,Internship,Company Website,Phone Screen,95633,3,2.8
+261,Microsoft,Data Analyst,2024-02-26,Internship,Naukri,Phone Screen,106943,4,2.8
+262,Microsoft,Data Analyst,2024-01-01,Remote,Company Website,Selected,126111,3,2.8
+263,Adobe,Data Scientist,2024-03-03,Internship,LinkedIn,Applied,108258,4,2.8
+264,Amazon,Software Engineer,2024-02-23,Internship,LinkedIn,Selected,42924,0,2.8
+265,Meta,AI Research Intern,2024-02-24,Full-time,Company Website,Selected,99286,0,2.8
+266,Netflix,AI Research Intern,2024-04-24,Full-time,Company Website,Phone Screen,123269,3,2.8
+267,Google,Data Scientist,2024-02-09,Remote,LinkedIn,Phone Screen,104071,2,2.8
+268,Netflix,Data Scientist,2024-01-15,Full-time,Naukri,Selected,87326,4,2.8
+269,Google,Data Scientist,2024-01-21,Full-time,Referral,Selected,120023,1,2.8
+270,OpenAI,Frontend Developer,2024-02-16,Internship,Referral,Selected,60651,3,2.8
+271,Netflix,Frontend Developer,2024-03-13,Contract,Company Website,Phone Screen,100202,1,2.8
+272,Uber,ML Engineer,2024-02-22,Full-time,Referral,Selected,78777,3,2.8
+273,Uber,ML Engineer,2024-01-09,Contract,LinkedIn,Selected,46994,2,2.8
+274,Spotify,Data Scientist,2024-03-14,Full-time,LinkedIn,Rejected,97263,2,2.8
+275,Amazon,Software Engineer,2024-02-21,Full-time,Company Website,Applied,89634,2,2.8
+276,Google,Data Analyst,2024-02-26,Remote,Company Website,Interview Scheduled,130158,2,2.8
+277,Google,Frontend Developer,2024-04-26,Remote,Company Website,Applied,40800,0,2.8
+278,Amazon,Software Engineer,2024-01-26,Remote,Naukri,Rejected,67823,0,2.8
+279,Adobe,Backend Developer,2024-02-10,Contract,Referral,Interview Scheduled,138575,4,2.8
+280,Spotify,Frontend Developer,2024-02-04,Internship,Company Website,Selected,93878,1,2.8
+281,Adobe,Frontend Developer,2024-03-03,Full-time,Indeed,Rejected,48708,3,2.8
+282,Adobe,ML Engineer,2024-04-25,Full-time,Indeed,Selected,42819,3,2.8
+283,Adobe,Data Analyst,2024-01-25,Full-time,LinkedIn,Phone Screen,104905,0,2.8
+284,Amazon,Data Analyst,2024-03-30,Contract,Referral,Assessment Pending,93870,3,2.8
+285,Adobe,AI Research Intern,2024-03-15,Remote,Company Website,Rejected,39283,0,2.8
+286,Uber,AI Research Intern,2024-02-07,Internship,Indeed,Phone Screen,60573,4,2.8
+287,Microsoft,AI Research Intern,2024-01-02,Contract,Referral,Rejected,108707,1,2.8
+288,OpenAI,AI Research Intern,2024-01-07,Remote,LinkedIn,Rejected,60933,4,2.8
+289,Google,Backend Developer,2024-03-22,Contract,Naukri,Phone Screen,35774,2,2.8
+290,Google,Backend Developer,2024-03-31,Internship,Referral,Interview Scheduled,102055,2,2.8
+291,OpenAI,Frontend Developer,2024-02-03,Remote,Referral,Applied,40983,2,2.8
+292,Amazon,Data Scientist,2024-03-31,Contract,Naukri,Selected,126468,4,2.8
+293,Netflix,ML Engineer,2024-01-17,Internship,Referral,Rejected,126334,3,2.8
+294,Amazon,ML Engineer,2024-02-12,Full-time,LinkedIn,Selected,48133,1,2.8
+295,Google,AI Research Intern,2024-02-28,Internship,LinkedIn,Assessment Pending,44939,2,2.8
+296,Google,Frontend Developer,2024-04-17,Full-time,Naukri,Phone Screen,30781,2,2.8
+297,OpenAI,Software Engineer,2024-02-20,Contract,Company Website,Selected,144586,2,2.8
+298,Adobe,Data Scientist,2024-02-23,Remote,Indeed,Phone Screen,86700,1,2.8
+299,Amazon,Frontend Developer,2024-01-24,Remote,Company Website,Selected,57624,2,2.8
+300,Meta,Data Scientist,2024-01-25,Contract,Referral,Applied,36823,1,2.8
+301,OpenAI,Data Scientist,2024-03-11,Remote,Indeed,Applied,48489,2,2.8
+302,Uber,Data Scientist,2024-02-21,Remote,Naukri,Applied,148555,4,2.8
+303,Google,Frontend Developer,2024-03-10,Full-time,Naukri,Applied,69961,4,2.8
+304,OpenAI,AI Research Intern,2024-04-26,Contract,Indeed,Applied,149664,1,2.8
+305,Amazon,ML Engineer,2024-03-28,Internship,LinkedIn,Applied,59118,4,2.8
+306,Google,ML Engineer,2024-02-02,Full-time,Indeed,Phone Screen,130417,1,2.8
+307,Netflix,AI Research Intern,2024-02-18,Contract,Referral,Rejected,111816,4,2.8
+308,OpenAI,Data Scientist,2024-01-29,Full-time,LinkedIn,Selected,52263,4,2.8
+309,Spotify,Software Engineer,2024-03-03,Internship,Naukri,Applied,43565,1,2.8
+310,Google,Data Analyst,2024-04-16,Internship,Indeed,Phone Screen,50354,3,2.8
+311,Amazon,Frontend Developer,2024-01-22,Contract,Company Website,Phone Screen,72951,4,2.8
+312,Microsoft,Data Analyst,2024-01-26,Internship,Company Website,Phone Screen,121179,2,2.8
+313,Meta,AI Research Intern,2024-01-28,Full-time,Referral,Rejected,53648,3,2.8
+314,Oracle,Software Engineer,2024-04-23,Internship,Company Website,Selected,80729,1,2.8
+315,Adobe,Frontend Developer,2024-03-25,Full-time,Indeed,Rejected,71971,3,2.8
+316,Oracle,AI Research Intern,2024-02-18,Full-time,Indeed,Interview Scheduled,48658,0,2.8
+317,Amazon,Data Scientist,2024-03-11,Internship,Company Website,Phone Screen,51253,0,2.8
+318,Uber,ML Engineer,2024-03-21,Contract,Indeed,Interview Scheduled,94166,4,2.8
+319,Uber,Data Analyst,2024-03-24,Remote,Referral,Assessment Pending,78563,4,2.8
+320,Microsoft,Backend Developer,2024-04-14,Internship,LinkedIn,Applied,56390,2,2.8
+321,Adobe,Backend Developer,2024-02-18,Full-time,Referral,Applied,118664,3,2.8
+322,Spotify,Software Engineer,2024-01-20,Full-time,Referral,Rejected,81578,0,2.8
+323,Microsoft,Data Scientist,2024-04-27,Internship,Indeed,Selected,109025,4,2.8
+324,Oracle,Data Analyst,2024-03-26,Contract,LinkedIn,Interview Scheduled,133850,3,2.8
+325,Microsoft,Data Scientist,2024-04-01,Contract,Indeed,Selected,62658,4,2.8
+326,Oracle,Data Analyst,2024-03-03,Full-time,Naukri,Rejected,36852,4,2.8
+327,Google,Software Engineer,2024-03-01,Full-time,Indeed,Applied,124986,0,2.8
+328,Uber,Software Engineer,2024-04-13,Contract,Indeed,Selected,32551,0,2.8
+329,Google,Backend Developer,2024-02-18,Remote,Indeed,Selected,101947,4,2.8
+330,Meta,Data Scientist,2024-03-11,Internship,LinkedIn,Applied,91001,1,2.8
+331,Adobe,Frontend Developer,2024-01-01,Full-time,Indeed,Interview Scheduled,79159,4,2.8
+332,Spotify,Backend Developer,2024-04-05,Full-time,LinkedIn,Applied,81707,4,2.8
+333,Oracle,Data Scientist,2024-01-13,Contract,Company Website,Selected,63243,2,2.8
+334,Spotify,Backend Developer,2024-04-03,Internship,Naukri,Interview Scheduled,51800,2,2.8
+335,Oracle,Frontend Developer,2024-03-27,Contract,LinkedIn,Interview Scheduled,105939,2,2.8
+336,Amazon,ML Engineer,2024-02-20,Internship,Company Website,Applied,87828,1,2.8
+337,Microsoft,ML Engineer,2024-02-25,Internship,LinkedIn,Selected,37239,1,2.8
+338,Meta,ML Engineer,2024-03-23,Internship,LinkedIn,Rejected,36710,4,2.8
+339,Uber,ML Engineer,2024-03-02,Full-time,Naukri,Selected,51384,2,2.8
+340,Oracle,AI Research Intern,2024-02-01,Remote,Referral,Phone Screen,51038,1,2.8
+341,Spotify,Data Analyst,2024-01-30,Contract,Referral,Assessment Pending,70846,0,2.8
+342,Meta,AI Research Intern,2024-01-29,Remote,LinkedIn,Rejected,117983,4,2.8
+343,Netflix,AI Research Intern,2024-02-18,Contract,Indeed,Interview Scheduled,97821,3,2.8
+344,Netflix,AI Research Intern,2024-02-14,Internship,Company Website,Rejected,67991,4,2.8
+345,Google,ML Engineer,2024-04-02,Full-time,Indeed,Interview Scheduled,109057,3,2.8
+346,Uber,Frontend Developer,2024-01-30,Remote,Indeed,Interview Scheduled,143193,2,2.8
+347,Amazon,Software Engineer,2024-01-16,Full-time,LinkedIn,Rejected,36971,3,2.8
+348,Spotify,Software Engineer,2024-02-09,Contract,LinkedIn,Interview Scheduled,59139,2,2.8
+349,Microsoft,Data Analyst,2024-01-19,Full-time,LinkedIn,Interview Scheduled,115445,0,2.8
+350,Microsoft,ML Engineer,2024-01-18,Full-time,LinkedIn,Phone Screen,107067,3,2.8
+351,Spotify,ML Engineer,2024-01-01,Remote,Referral,Selected,110257,4,2.8
+352,Adobe,ML Engineer,2024-03-18,Internship,LinkedIn,Selected,114742,2,2.8
+353,Amazon,Backend Developer,2024-04-24,Full-time,Referral,Assessment Pending,67711,4,2.8
+354,Meta,Data Scientist,2024-02-16,Internship,Referral,Assessment Pending,36530,1,2.8
+355,Oracle,Backend Developer,2024-04-23,Contract,LinkedIn,Phone Screen,41116,2,2.8
+356,Adobe,Data Scientist,2024-03-06,Full-time,Naukri,Assessment Pending,95794,3,2.8
+357,Oracle,ML Engineer,2024-04-27,Remote,Company Website,Rejected,30282,2,2.8
+358,Oracle,ML Engineer,2024-04-01,Contract,Indeed,Applied,109473,4,2.8
+359,Adobe,Backend Developer,2024-04-22,Contract,Referral,Applied,31898,0,2.8
+360,Google,Backend Developer,2024-04-23,Remote,Company Website,Applied,34135,2,2.8
+361,Netflix,Data Scientist,2024-04-03,Full-time,Naukri,Phone Screen,36629,3,2.8
+362,Oracle,Software Engineer,2024-02-07,Full-time,Indeed,Phone Screen,139472,1,2.8
+363,Adobe,Data Scientist,2024-02-20,Contract,Indeed,Interview Scheduled,115120,0,2.8
+364,Adobe,Backend Developer,2024-03-03,Full-time,Referral,Applied,149798,1,2.8
+365,OpenAI,Frontend Developer,2024-01-04,Internship,LinkedIn,Rejected,119087,2,2.8
+366,Google,Backend Developer,2024-01-01,Remote,Naukri,Assessment Pending,95031,4,2.8
+367,Uber,Frontend Developer,2024-01-08,Internship,Referral,Rejected,63380,4,2.8
+368,OpenAI,Data Analyst,2024-01-29,Full-time,Naukri,Assessment Pending,142507,3,2.8
+369,OpenAI,Backend Developer,2024-02-24,Contract,LinkedIn,Applied,47071,4,2.8
+370,Spotify,Data Analyst,2024-04-12,Remote,LinkedIn,Applied,50074,0,2.8
+371,Netflix,Software Engineer,2024-01-03,Full-time,Referral,Applied,120724,4,2.8
+372,Adobe,Data Scientist,2024-02-01,Full-time,LinkedIn,Phone Screen,97843,3,2.8
+373,Netflix,Frontend Developer,2024-01-10,Contract,Company Website,Assessment Pending,69901,2,2.8
+374,Amazon,Data Scientist,2024-03-14,Contract,Indeed,Phone Screen,41205,2,2.8
+375,Spotify,Data Analyst,2024-03-23,Internship,Referral,Phone Screen,85661,4,2.8
+376,Uber,Frontend Developer,2024-04-19,Remote,Naukri,Selected,35906,1,2.8
+377,Netflix,Data Scientist,2024-02-03,Remote,Company Website,Rejected,32591,2,2.8
+378,Microsoft,Backend Developer,2024-04-06,Contract,Referral,Rejected,92987,4,2.8
+379,Oracle,ML Engineer,2024-03-27,Internship,LinkedIn,Interview Scheduled,93370,3,2.8
+380,Amazon,Data Analyst,2024-02-24,Remote,LinkedIn,Phone Screen,110685,4,2.8
+381,Google,Data Scientist,2024-04-01,Contract,LinkedIn,Assessment Pending,140454,2,2.8
+382,Uber,Data Analyst,2024-02-01,Full-time,LinkedIn,Selected,135487,3,2.8
+383,Amazon,AI Research Intern,2024-02-19,Remote,Naukri,Selected,84400,4,2.8
+384,Oracle,Data Analyst,2024-01-07,Internship,Company Website,Rejected,55150,0,2.8
+385,Spotify,Frontend Developer,2024-04-02,Internship,Indeed,Phone Screen,61852,3,2.8
+386,Oracle,AI Research Intern,2024-01-08,Internship,Naukri,Interview Scheduled,72870,0,2.8
+387,OpenAI,Frontend Developer,2024-03-05,Full-time,Naukri,Phone Screen,149796,1,2.8
+388,Oracle,ML Engineer,2024-02-26,Remote,Indeed,Applied,82756,3,2.8
+389,OpenAI,AI Research Intern,2024-04-28,Remote,Indeed,Phone Screen,145357,0,2.8
+390,Spotify,Backend Developer,2024-03-07,Full-time,LinkedIn,Applied,149052,2,2.8
+391,Meta,Data Analyst,2024-03-28,Remote,Naukri,Applied,86481,2,2.8
+392,OpenAI,Data Scientist,2024-03-27,Full-time,Referral,Interview Scheduled,31283,1,2.8
+393,Google,Software Engineer,2024-02-28,Full-time,Indeed,Assessment Pending,63691,3,2.8
+394,Oracle,Data Analyst,2024-03-12,Full-time,Indeed,Rejected,31125,3,2.8
+395,Oracle,Data Analyst,2024-02-23,Internship,Company Website,Phone Screen,97065,3,2.8
+396,Google,ML Engineer,2024-04-20,Remote,Referral,Applied,56170,1,2.8
+397,Microsoft,Backend Developer,2024-04-10,Full-time,Referral,Phone Screen,38438,3,2.8
+398,Adobe,Software Engineer,2024-03-07,Remote,Indeed,Assessment Pending,50095,2,2.8
+399,Meta,AI Research Intern,2024-02-20,Internship,LinkedIn,Rejected,46154,0,2.8
+400,Uber,AI Research Intern,2024-04-06,Full-time,Company Website,Assessment Pending,38004,2,2.8
+401,OpenAI,AI Research Intern,2024-04-01,Contract,Referral,Rejected,39752,2,2.8
+402,Google,Frontend Developer,2024-04-20,Internship,Indeed,Selected,85426,0,2.8
+403,Spotify,Frontend Developer,2024-01-08,Contract,Referral,Rejected,138896,2,2.8
+404,OpenAI,Data Scientist,2024-02-03,Remote,Company Website,Interview Scheduled,56819,1,2.8
+405,Adobe,Software Engineer,2024-02-04,Remote,Company Website,Assessment Pending,132168,0,2.8
+406,Spotify,AI Research Intern,2024-04-05,Internship,Naukri,Applied,122051,2,2.8
+407,Amazon,Frontend Developer,2024-03-28,Remote,Indeed,Selected,54217,4,2.8
+408,Oracle,Data Scientist,2024-03-18,Contract,Company Website,Interview Scheduled,118708,2,2.8
+409,Amazon,Backend Developer,2024-02-01,Full-time,Naukri,Phone Screen,62994,1,2.8
+410,OpenAI,Data Scientist,2024-04-29,Full-time,Naukri,Assessment Pending,45036,3,2.8
+411,Adobe,Frontend Developer,2024-02-15,Full-time,Referral,Applied,107275,2,2.8
+412,Meta,ML Engineer,2024-04-16,Internship,Referral,Rejected,127756,3,2.8
+413,OpenAI,ML Engineer,2024-01-16,Remote,Naukri,Applied,79416,4,2.8
+414,Google,AI Research Intern,2024-03-08,Contract,Referral,Phone Screen,39587,2,2.8
+415,Netflix,ML Engineer,2024-04-25,Remote,Company Website,Selected,140053,0,2.8
+416,OpenAI,AI Research Intern,2024-02-06,Remote,LinkedIn,Selected,125665,3,2.8
+417,Oracle,AI Research Intern,2024-02-23,Remote,Company Website,Assessment Pending,30645,4,2.8
+418,Oracle,Frontend Developer,2024-03-25,Full-time,Naukri,Selected,60930,0,2.8
+419,OpenAI,ML Engineer,2024-01-14,Contract,Naukri,Assessment Pending,111835,0,2.8
+420,Spotify,AI Research Intern,2024-04-04,Contract,Company Website,Assessment Pending,60090,0,2.8
+421,Netflix,Software Engineer,2024-02-24,Remote,Referral,Assessment Pending,117489,0,2.8
+422,Google,Backend Developer,2024-02-17,Full-time,Referral,Rejected,82142,2,2.8
+423,OpenAI,Data Scientist,2024-03-22,Full-time,Naukri,Interview Scheduled,141979,2,2.8
+424,Spotify,Data Scientist,2024-01-07,Contract,Indeed,Assessment Pending,56475,2,2.8
+425,Oracle,Frontend Developer,2024-03-14,Full-time,Referral,Assessment Pending,48888,4,2.8
+426,Oracle,ML Engineer,2024-01-07,Full-time,Company Website,Interview Scheduled,73732,4,2.8
+427,Adobe,ML Engineer,2024-02-02,Full-time,Referral,Applied,111623,4,2.8
+428,OpenAI,AI Research Intern,2024-01-23,Internship,Company Website,Assessment Pending,76305,1,2.8
+429,Netflix,Data Analyst,2024-03-25,Remote,Naukri,Rejected,76037,4,2.8
+430,Microsoft,AI Research Intern,2024-01-19,Contract,Referral,Selected,39346,2,2.8
+431,Netflix,Backend Developer,2024-04-21,Contract,Company Website,Selected,30587,2,2.8
+432,Oracle,Software Engineer,2024-01-19,Internship,Naukri,Phone Screen,42763,1,2.8
+433,Oracle,Data Scientist,2024-02-05,Remote,Indeed,Phone Screen,89165,1,2.8
+434,Amazon,AI Research Intern,2024-01-29,Contract,Company Website,Selected,137481,4,2.8
+435,Oracle,Data Analyst,2024-02-29,Full-time,Indeed,Selected,99615,3,2.8
+436,Google,Data Analyst,2024-03-22,Contract,Indeed,Rejected,66116,1,2.8
+437,Uber,AI Research Intern,2024-01-02,Full-time,LinkedIn,Interview Scheduled,115751,0,2.8
+438,OpenAI,Frontend Developer,2024-01-01,Internship,Referral,Phone Screen,121353,2,2.8
+439,Netflix,Data Scientist,2024-02-16,Full-time,Company Website,Interview Scheduled,120301,0,2.8
+440,Uber,Frontend Developer,2024-03-09,Contract,Indeed,Rejected,125648,2,2.8
+441,Spotify,Software Engineer,2024-01-20,Contract,LinkedIn,Selected,55556,2,2.8
+442,Microsoft,Data Analyst,2024-01-11,Contract,Naukri,Assessment Pending,89042,1,2.8
+443,Google,Data Analyst,2024-04-15,Internship,Company Website,Interview Scheduled,48099,1,2.8
+444,Netflix,Backend Developer,2024-01-02,Internship,Indeed,Selected,139089,0,2.8
+445,Uber,Software Engineer,2024-03-07,Remote,Referral,Selected,75096,2,2.8
+446,Microsoft,Data Analyst,2024-03-27,Contract,LinkedIn,Applied,101986,0,2.8
+447,Amazon,Software Engineer,2024-04-28,Full-time,Indeed,Interview Scheduled,43230,3,2.8
+448,Google,Data Scientist,2024-01-12,Internship,Referral,Assessment Pending,59009,0,2.8
+449,Google,ML Engineer,2024-01-20,Contract,Indeed,Interview Scheduled,100969,4,2.8
+450,Amazon,Data Analyst,2024-01-05,Contract,Company Website,Selected,63866,0,2.8
+451,OpenAI,Backend Developer,2024-02-06,Internship,Company Website,Assessment Pending,135400,4,2.8
+452,Amazon,Data Scientist,2024-02-07,Remote,Company Website,Rejected,114246,4,2.8
+453,Google,AI Research Intern,2024-04-03,Internship,LinkedIn,Applied,106975,4,2.8
+454,Google,Software Engineer,2024-01-09,Internship,Company Website,Selected,71855,3,2.8
+455,Uber,AI Research Intern,2024-04-07,Full-time,Referral,Phone Screen,111557,0,2.8
+456,Oracle,Frontend Developer,2024-02-22,Full-time,Indeed,Phone Screen,36416,0,2.8
+457,Microsoft,Data Scientist,2024-02-13,Remote,Naukri,Applied,102516,3,2.8
+458,Amazon,AI Research Intern,2024-04-08,Contract,Referral,Rejected,85915,2,2.8
+459,Microsoft,Data Analyst,2024-04-25,Internship,Referral,Selected,48058,1,2.8
+460,Amazon,Software Engineer,2024-03-26,Remote,Company Website,Interview Scheduled,106637,0,2.8
+461,Spotify,ML Engineer,2024-04-17,Full-time,LinkedIn,Applied,70718,1,2.8
+462,Google,Data Scientist,2024-01-24,Internship,Indeed,Rejected,62602,3,2.8
+463,Oracle,Data Analyst,2024-03-21,Contract,LinkedIn,Interview Scheduled,104658,2,2.8
+464,Uber,Backend Developer,2024-03-14,Full-time,Indeed,Phone Screen,108112,2,2.8
+465,Oracle,Frontend Developer,2024-01-30,Full-time,Indeed,Phone Screen,88067,2,2.8
+466,Oracle,Software Engineer,2024-04-29,Full-time,LinkedIn,Interview Scheduled,57516,3,2.8
+467,Oracle,Data Scientist,2024-02-28,Remote,Referral,Applied,117969,4,2.8
+468,Microsoft,Data Scientist,2024-04-19,Contract,Indeed,Phone Screen,31089,4,2.8
+469,Amazon,ML Engineer,2024-03-27,Internship,LinkedIn,Selected,67346,1,2.8
+470,Meta,ML Engineer,2024-04-05,Remote,Indeed,Assessment Pending,104663,4,2.8
+471,Spotify,Backend Developer,2024-03-21,Remote,Naukri,Interview Scheduled,40487,4,2.8
+472,Netflix,Frontend Developer,2024-04-23,Remote,Referral,Interview Scheduled,30155,2,2.8
+473,Oracle,Backend Developer,2024-04-24,Full-time,Company Website,Phone Screen,97494,2,2.8
+474,OpenAI,Data Analyst,2024-03-21,Contract,Indeed,Applied,106229,1,2.8
+475,Microsoft,Data Analyst,2024-01-14,Remote,Naukri,Selected,134648,0,2.8
+476,Uber,Backend Developer,2024-01-09,Internship,Company Website,Applied,68547,1,2.8
+477,Netflix,Frontend Developer,2024-02-09,Contract,Company Website,Rejected,58795,1,2.8
+478,Meta,Backend Developer,2024-03-06,Internship,Indeed,Rejected,85296,3,2.8
+479,OpenAI,Frontend Developer,2024-04-18,Contract,LinkedIn,Assessment Pending,51447,3,2.8
+480,Meta,Frontend Developer,2024-01-25,Internship,Indeed,Phone Screen,66598,1,2.8
+481,Netflix,AI Research Intern,2024-04-12,Full-time,Naukri,Phone Screen,71814,1,2.8
+482,Oracle,Software Engineer,2024-03-13,Remote,Company Website,Phone Screen,120751,1,2.8
+483,OpenAI,Frontend Developer,2024-04-27,Internship,Indeed,Assessment Pending,105330,4,2.8
+484,Meta,ML Engineer,2024-01-22,Contract,LinkedIn,Rejected,128745,3,2.8
+485,Uber,Frontend Developer,2024-04-16,Remote,Indeed,Applied,117960,1,2.8
+486,Amazon,Frontend Developer,2024-04-19,Remote,Referral,Assessment Pending,93278,2,2.8
+487,Google,Frontend Developer,2024-01-04,Contract,LinkedIn,Assessment Pending,85077,2,2.8
+488,Amazon,AI Research Intern,2024-01-26,Internship,Naukri,Applied,142782,4,2.8
+489,Netflix,AI Research Intern,2024-02-27,Full-time,Company Website,Phone Screen,132932,4,2.8
+490,Microsoft,Data Analyst,2024-01-29,Full-time,Indeed,Selected,101906,0,2.8
+491,Google,AI Research Intern,2024-04-18,Internship,LinkedIn,Applied,39528,0,2.8
+492,Spotify,ML Engineer,2024-04-07,Remote,Referral,Rejected,123812,0,2.8
+493,Uber,ML Engineer,2024-03-27,Remote,LinkedIn,Interview Scheduled,80100,4,2.8
+494,Spotify,AI Research Intern,2024-02-06,Remote,Referral,Interview Scheduled,139869,4,2.8
+495,OpenAI,Backend Developer,2024-03-15,Remote,Naukri,Assessment Pending,38179,4,2.8
+496,Google,Software Engineer,2024-03-10,Internship,Company Website,Interview Scheduled,78781,2,2.8
+497,Spotify,AI Research Intern,2024-01-18,Remote,Naukri,Selected,85267,4,2.8
+498,Spotify,Frontend Developer,2024-03-25,Contract,Indeed,Phone Screen,112379,2,2.8
+499,Meta,Data Scientist,2024-02-11,Remote,LinkedIn,Rejected,53952,0,2.8
+500,Amazon,Software Engineer,2024-04-09,Full-time,Referral,Selected,83798,0,2.8

@@ -28,14 +28,14 @@ app.include_router(viz_router, prefix="/api", tags=["visualization"])
 
 @app.on_event("startup")
 async def startup_event():
-    """Load datasets on startup from Google Drive"""
-    global all_data
+    """Load and clean datasets on startup."""
     try:
-        # Download and load datasets from Google Drive
-        all_data = download_and_load_datasets()
+        loaded_data = download_and_load_datasets()
+        all_data.clear()
+        all_data.update(loaded_data)
     except Exception as e:
         print(f"Error loading datasets: {e}")
-        all_data = {}
+        all_data.clear()
 
 @app.get("/")
 async def root():
@@ -51,7 +51,8 @@ async def root():
             "/api/data/job_applications",
             "/api/data/recruitment_data",
             "/api/data/job_market_data",
-            "/api/data/all"
+            "/api/data/all",
+            "/api/data/summary"
         ]
     }
 
