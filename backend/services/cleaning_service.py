@@ -46,7 +46,8 @@ def clean_job_applications(df: pd.DataFrame) -> pd.DataFrame:
             .fillna(cleaned["status"])
         )
 
-    required_columns = [column for column in ["application_id", "job_role", "application_date", "status"] if column in cleaned.columns]
+    # Ensure we don't drop rows missing job_role; keep total dataset coverage
+    required_columns = [column for column in ["application_id", "application_date", "status"] if column in cleaned.columns]
     if required_columns:
         cleaned = cleaned.dropna(subset=required_columns)
 

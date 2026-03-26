@@ -17,10 +17,25 @@ LOCAL_FILE_FALLBACKS = {
 }
 
 def download_datasets():
-    """Download all datasets from Google Drive"""
+    """Download all datasets from Google Drive, overwriting existing local files"""
     for key, dataset in datasets.items():
+        # Determine the target file path: use existing local file if available, else primary
+        candidates = [dataset.get('file')] + LOCAL_FILE_FALLBACKS.get(key, [])
+        existing_path = None
+        for candidate in candidates:
+            if not candidate:
+                continue
+            candidate_path = os.path.join(DATA_DIR, candidate)
+            if os.path.exists(candidate_path):
+                existing_path = candidate_path
+                break
+        
+        if existing_path:
+            file_path = existing_path
+        else:
+            file_path = os.path.join(DATA_DIR, dataset['file'])
+        
         url = f"https://drive.google.com/uc?export=download&id={dataset['gdrive_id']}"
-        file_path = os.path.join(DATA_DIR, dataset['file'])
         
         try:
             response = requests.get(url)

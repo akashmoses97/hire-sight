@@ -44,6 +44,22 @@ def process_timeline_data(all_data):
     return {"timeline": _build_timeline(job_applications)}
 
 
+def get_timeline_by_filters(all_data, filters):
+    job_applications = all_data.get("job_applications")
+    if job_applications is None or job_applications.empty or "application_date" not in job_applications.columns:
+        return None
+
+    df = job_applications.copy()
+    for key, value in filters.items():
+        if value and value != 'All' and key in df.columns:
+            df = df[df[key].astype("string").str.lower() == value.lower()]
+
+    if df.empty:
+        return {"timeline": []}
+
+    return {"timeline": _build_timeline(df)}
+
+
 def get_timeline_by_year(all_data, year):
     job_applications = all_data.get("job_applications")
     if job_applications is None or job_applications.empty or "application_date" not in job_applications.columns:

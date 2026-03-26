@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -14,9 +15,14 @@ app = FastAPI(
 )
 
 # CORS setup
+allowed_origins = os.getenv(
+    "ALLOWED_ORIGINS",
+    "http://localhost:3000,http://localhost:8000"
+).split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Restrict in production
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -29,13 +35,19 @@ app.include_router(viz_router, prefix="/api", tags=["visualization"])
 @app.on_event("startup")
 async def startup_event():
     """Load and clean datasets on startup."""
-    try:
-        loaded_data = download_and_load_datasets()
-        all_data.clear()
-        all_data.update(loaded_data)
-    except Exception as e:
-        print(f"Error loading datasets: {e}")
-        all_data.clear()
+    data_load_on_startup = os.getenv("DATA_LOAD_ON_STARTUP", "true").lower() == "true"
+    if data_load_on_startup:
+        try:
+            print("Loading datasets on startup...")
+            loaded_data = download_and_load_datasets()
+            all_data.clear()
+            all_data.update(loaded_data)
+            print("Datasets loaded successfully")
+        except Exception as e:
+            print(f"Error loading datasets: {e}")
+            all_data.clear()
+    else:
+        print("Data loading on startup is disabled")
 
 @app.get("/")
 async def root():
