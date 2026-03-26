@@ -1,12 +1,19 @@
 import axios from 'axios';
 
-// Base URL for API requests
-const API_URL = 'http://localhost:8000/api';
+// Base URL for API requests - uses environment variable or defaults to localhost
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
 // Fetch data for Sankey diagram showing job application pipeline [1]
-export const fetchPipelineData = async () => {
+export const fetchPipelineData = async (filters = {}) => {
   try {
-    const response = await axios.get(`${API_URL}/pipeline`);
+    const params = new URLSearchParams();
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value && value !== 'All') params.append(key, value);
+    });
+    const endpoint = `${API_URL}/pipeline${params.toString() ? '?' + params.toString() : ''}`;
+    console.log('Fetching pipeline data from:', endpoint);
+    const response = await axios.get(endpoint);
+    console.log('Pipeline data response:', response.data);
     return response.data;
   } catch (error) {
     console.error('Error fetching pipeline data:', error);
@@ -15,13 +22,58 @@ export const fetchPipelineData = async () => {
 };
 
 // Fetch timeline data for application tracking over time
-export const fetchTimelineData = async () => {
+export const fetchTimelineData = async (filters = {}) => {
   try {
-    const response = await axios.get(`${API_URL}/timeline`);
+    const params = new URLSearchParams();
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value && value !== 'All') params.append(key, value);
+    });
+    const endpoint = `${API_URL}/timeline${params.toString() ? '?' + params.toString() : ''}`;
+    const response = await axios.get(endpoint);
     return response.data;
   } catch (error) {
     console.error('Error fetching timeline data:', error);
     throw error;
+  }
+};
+
+export const fetchPipelineRoles = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/pipeline/roles`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching pipeline roles:', error);
+    return [];
+  }
+};
+
+export const fetchPipelineCompanies = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/pipeline/companies`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching pipeline companies:', error);
+    return [];
+  }
+};
+
+export const fetchPipelineJobTypes = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/pipeline/job-types`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching pipeline job types:', error);
+    return [];
+  }
+};
+
+export const fetchPipelinePlatforms = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/pipeline/platforms`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching pipeline platforms:', error);
+    return [];
   }
 };
 
