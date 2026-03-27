@@ -9,8 +9,8 @@ const YearlyTrendChart = ({ data }) => {
   }
 
   return (
-    <div className="yearly-trend-container">
-      <div className="placeholder-message">
+    <div className="yearly-trend-container futuristic-card p-3">
+      <div className="placeholder-message muted-text">
         <p>Yearly Trend Chart Placeholder</p>
         <p>Will visualize hiring patterns and market fluctuations over time</p>
         <pre>{JSON.stringify(data, null, 2)}</pre>
