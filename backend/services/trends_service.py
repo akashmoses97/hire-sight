@@ -43,19 +43,34 @@ def _normalize_role(role):
     cleaned = str(role).strip()
     lowered = cleaned.lower()
     return ROLE_MAPPING.get(lowered, cleaned.title())
+from services.cleaning_service import get_stage_metrics
+
+
+def _safe_rate(numerator: int, denominator: int) -> float:
+    if denominator == 0:
+        return 0.0
+    return round(numerator / denominator, 4)
 
 
 def process_yearly_trends(all_data):
-    """
-    Placeholder for yearly trends data processing
-    Would process job market data grouped by year
-    """
-    # Sample yearly trends data
+    job_market = all_data.get("job_market")
+    if job_market is None or job_market.empty or "year" not in job_market.columns:
+        return {"years": [], "hiring_rates": [], "job_postings": []}
+
+    grouped = (
+        job_market.groupby("year", as_index=False)
+        .agg(job_postings=("job_title", "count"))
+        .sort_values("year")
+    )
+
+    grouped["hiring_rate"] = grouped["job_postings"].pct_change().fillna(0.0)
+
     return {
-        'years': [2019, 2020, 2021, 2022, 2023],
-        'hiring_rates': [0.15, 0.12, 0.08, 0.14, 0.18],
-        'job_postings': [2000, 1800, 2200, 2500, 2800]
+        "years": [int(year) for year in grouped["year"].tolist()],
+        "hiring_rates": [round(float(rate), 4) for rate in grouped["hiring_rate"].tolist()],
+        "job_postings": [int(count) for count in grouped["job_postings"].tolist()],
     }
+
 
 def process_role_heatmap_data(all_data):
     """

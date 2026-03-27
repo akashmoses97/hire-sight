@@ -54,8 +54,8 @@ wheels/
 *.egg
 
 # Downloaded data files
-backend/data/*
-!backend/data/.gitkeep
+# backend/data/*
+# !backend/data/.gitkeep
 
 # Coverage reports
 coverage/
