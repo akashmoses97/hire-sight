@@ -81,13 +81,16 @@ const PipelinePage = () => {
   if (error) return <div className="alert alert-danger mt-5">Error: {error}</div>;
 
   return (
-    <div className="container-fluid mt-4">
-      <Link to="/" className="btn btn-secondary mb-3">← Back to Home</Link>
-      <h2 className="mb-4">Job Search Pipeline Analytics</h2>
+    <div className="container-fluid mt-4 page-shell">
+      <div className="page-topbar">
+        <Link to="/" className="btn btn-outline-future mb-3">← Back to Home</Link>
+      </div>
+      <h2 className="mb-2 page-title">Job Search Pipeline Analytics</h2>
+      <p className="page-subtitle">Track conversion flow and filter outcomes across roles, companies, and platforms.</p>
 
       {/* Filters Section */}
-      <div className="card mb-4">
-        <div className="card-header bg-primary text-white">
+      <div className="card mb-4 futuristic-card">
+        <div className="card-header">
           <h5 className="mb-0">Filters</h5>
         </div>
         <div className="card-body">
@@ -151,7 +154,7 @@ const PipelinePage = () => {
           </div>
           <div className="mt-3">
             <button 
-              className="btn btn-outline-secondary btn-sm"
+              className="btn btn-outline-future btn-sm"
               onClick={() => setFilters({
                 job_role: 'All',
                 company_name: 'All',
@@ -169,7 +172,7 @@ const PipelinePage = () => {
       {pipelineData && (
         <div className="row mb-4">
           <div className="col-md-3">
-            <div className="card text-center">
+            <div className="card text-center futuristic-card stat-card">
               <div className="card-body">
                 <h5 className="card-title text-primary">{pipelineData.applications || 0}</h5>
                 <p className="card-text">Total Applications</p>
@@ -177,7 +180,7 @@ const PipelinePage = () => {
             </div>
           </div>
           <div className="col-md-3">
-            <div className="card text-center">
+            <div className="card text-center futuristic-card stat-card">
               <div className="card-body">
                 <h5 className="card-title text-success">{pipelineData.callbacks || 0}</h5>
                 <p className="card-text">Callbacks</p>
@@ -185,7 +188,7 @@ const PipelinePage = () => {
             </div>
           </div>
           <div className="col-md-3">
-            <div className="card text-center">
+            <div className="card text-center futuristic-card stat-card">
               <div className="card-body">
                 <h5 className="card-title text-warning">{pipelineData.interviews || 0}</h5>
                 <p className="card-text">Interviews</p>
@@ -193,7 +196,7 @@ const PipelinePage = () => {
             </div>
           </div>
           <div className="col-md-3">
-            <div className="card text-center">
+            <div className="card text-center futuristic-card stat-card">
               <div className="card-body">
                 <h5 className="card-title text-danger">{pipelineData.offers || 0}</h5>
                 <p className="card-text">Offers</p>
@@ -206,21 +209,21 @@ const PipelinePage = () => {
       {/* Charts Section */}
       <div className="row">
         <div className="col-12 mb-4">
-          <div className="card">
-            <div className="card-header bg-success text-white">
+          <div className="card futuristic-card">
+            <div className="card-header">
               <h5 className="mb-0">Application Flow</h5>
             </div>
-            <div className="card-body">
+            <div className="card-body chart-shell">
               <SankeyDiagram data={pipelineData} />
             </div>
           </div>
         </div>
         <div className="col-12">
-          <div className="card">
-            <div className="card-header bg-info text-white">
+          <div className="card futuristic-card">
+            <div className="card-header">
               <h5 className="mb-0">Timeline</h5>
             </div>
-            <div className="card-body">
+            <div className="card-body chart-shell">
               <TimelineChart data={timelineData} />
             </div>
           </div>

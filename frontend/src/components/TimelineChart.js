@@ -1,11 +1,29 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import * as d3 from 'd3';
 
 const TimelineChart = ({ data }) => {
   const svgRef = useRef();
+  const [themeMode, setThemeMode] = useState(() => document.documentElement.getAttribute('data-theme') || 'dark');
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setThemeMode(document.documentElement.getAttribute('data-theme') || 'dark');
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (!data || !Array.isArray(data.timeline) || data.timeline.length === 0) return;
+
+    const rootStyles = getComputedStyle(document.documentElement);
+    const vizText = rootStyles.getPropertyValue('--viz-text').trim() || '#0f172a';
+    const vizAxis = rootStyles.getPropertyValue('--viz-axis').trim() || '#64748b';
 
     const records = data.timeline.map((d) => ({
       ...d,
@@ -46,11 +64,15 @@ const TimelineChart = ({ data }) => {
       .call(d3.axisBottom(x).ticks(Math.min(records.length, 8)).tickFormat(d3.timeFormat('%b %Y')))
       .selectAll('text')
       .attr('transform', 'rotate(-45)')
+      .style('fill', vizText)
       .style('text-anchor', 'end');
 
     svg.append('g')
       .attr('transform', `translate(${margin.left},0)`)
       .call(d3.axisLeft(y));
+
+    svg.selectAll('.domain, .tick line').attr('stroke', vizAxis);
+    svg.selectAll('.tick text').attr('fill', vizText).style('font-weight', 600);
 
     ['applications', 'callbacks', 'interviews', 'offers'].forEach((key) => {
       svg.append('path')
@@ -65,17 +87,17 @@ const TimelineChart = ({ data }) => {
     ['applications', 'callbacks', 'interviews', 'offers'].forEach((key, i) => {
       const g = legend.append('g').attr('transform', `translate(0, ${i * 20})`);
       g.append('rect').attr('width', 12).attr('height', 12).attr('fill', color(key));
-      g.append('text').attr('x', 16).attr('y', 10).text(key.charAt(0).toUpperCase() + key.slice(1));
+      g.append('text').attr('x', 16).attr('y', 10).attr('fill', vizText).style('font-weight', 600).text(key.charAt(0).toUpperCase() + key.slice(1));
     });
 
-  }, [data]);
+  }, [data, themeMode]);
 
   if (!data) {
     return <div>Loading timeline data...</div>;
   }
 
   return (
-    <div className="timeline-container" style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '8px', background: '#fff' }}>
+    <div className="timeline-container" style={{ padding: '10px', border: '1px solid var(--border-soft)', borderRadius: '12px', background: 'var(--viz-surface)' }}>
       <svg ref={svgRef} style={{ width: '100%', height: '360px' }} />
       {!data.timeline || data.timeline.length === 0 ? (
         <div className="text-center mt-2">No timeline data available for selected role.</div>
