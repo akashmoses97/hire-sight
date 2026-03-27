@@ -80,11 +80,16 @@ def process_role_heatmap_data(all_data):
     if recruitment_df is None or recruitment_df.empty:
         return None
 
-    required_columns = {'Role', 'decision'}
-    if not required_columns.issubset(recruitment_df.columns):
+    columns = {column.lower(): column for column in recruitment_df.columns}
+    role_column = columns.get('role')
+    decision_column = columns.get('decision')
+
+    if role_column is None or decision_column is None:
         return None
 
-    df = recruitment_df.loc[:, ['Role', 'decision']].copy()
+    df = recruitment_df.loc[:, [role_column, decision_column]].copy()
+    df.columns = ['Role', 'decision']
+
     df['Role'] = df['Role'].astype(str).str.strip()
     df['decision'] = df['decision'].astype(str).str.strip().str.lower()
     df = df[(df['Role'] != '') & (df['decision'].isin(['select', 'reject']))]
