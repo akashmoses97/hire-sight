@@ -49,6 +49,7 @@ async def startup_event():
     else:
         print("Data loading on startup is disabled")
 
+
 @app.get("/")
 async def root():
     """Root endpoint with API information"""
