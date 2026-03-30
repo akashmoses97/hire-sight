@@ -1,3 +1,10 @@
+/**
+ * Frontend API client helpers.
+ *
+ * This file centralizes requests to backend endpoints for charts, filters,
+ * and analytics views so React components can stay focused on rendering.
+ */
+
 import axios from 'axios';
 
 // Base URL for API requests - uses environment variable or defaults to localhost
@@ -7,6 +14,7 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 export const fetchPipelineData = async (filters = {}) => {
   try {
     const params = new URLSearchParams();
+    // Skip "All" so the backend interprets the request as unfiltered.
     Object.entries(filters).forEach(([key, value]) => {
       if (value && value !== 'All') params.append(key, value);
     });
@@ -25,6 +33,7 @@ export const fetchPipelineData = async (filters = {}) => {
 export const fetchTimelineData = async (filters = {}) => {
   try {
     const params = new URLSearchParams();
+    // Build the query string from the same filter shape used by the pipeline page.
     Object.entries(filters).forEach(([key, value]) => {
       if (value && value !== 'All') params.append(key, value);
     });
@@ -38,6 +47,8 @@ export const fetchTimelineData = async (filters = {}) => {
 };
 
 export const fetchPipelineRoles = async () => {
+  // Filter endpoints fall back to empty arrays so the page can still render
+  // even if one dropdown source is temporarily unavailable.
   try {
     const response = await axios.get(`${API_URL}/pipeline/roles`);
     return response.data;

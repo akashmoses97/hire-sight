@@ -1,3 +1,10 @@
+/**
+ * Pipeline analytics page container.
+ *
+ * This file manages filter state, loads pipeline and timeline data, and
+ * renders the summary cards and visualizations for application flow analysis.
+ */
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SankeyDiagram from './SankeyDiagram';
@@ -24,6 +31,8 @@ const PipelinePage = () => {
     const loadFilterOptions = async () => {
       try {
         console.log('Loading filter options...');
+        // These option lists come from independent endpoints, so request them
+        // together to reduce initial page wait time.
         const [rolesData, companiesData, jobTypesData, platformsData] = await Promise.all([
           fetchPipelineRoles(),
           fetchPipelineCompanies(),
@@ -56,6 +65,8 @@ const PipelinePage = () => {
       try {
         console.log('Making API calls...');
         
+        // Keep the summary cards and both visualizations in sync by deriving
+        // them from the same current filter state.
         console.log('Fetching pipeline data...');
         const pipeline = await fetchPipelineData(filters);
         console.log('Pipeline data received');
@@ -171,6 +182,8 @@ const PipelinePage = () => {
       {/* Summary Cards */}
       {pipelineData && (
         <div className="row mb-4">
+          {/* Show exact stage totals above the charts so users can compare
+              counts without reading the diagram labels. */}
           <div className="col-md-3">
             <div className="card text-center futuristic-card stat-card">
               <div className="card-body">

@@ -1,3 +1,10 @@
+/**
+ * Sankey diagram for application flow.
+ *
+ * This component transforms pipeline counts into a D3 Sankey chart that shows
+ * movement through hiring stages and updates its styling with theme changes.
+ */
+
 import React, { useRef, useEffect, useState } from 'react';
 import * as d3 from 'd3';
 import { sankey as d3Sankey, sankeyLinkHorizontal, sankeyJustify } from 'd3-sankey';
@@ -7,6 +14,8 @@ const SankeyDiagram = ({ data }) => {
   const [themeMode, setThemeMode] = useState(() => document.documentElement.getAttribute('data-theme') || 'dark');
 
   useEffect(() => {
+    // Theme changes happen at the document level, so watch the root attribute
+    // and trigger a chart redraw when it changes.
     const observer = new MutationObserver(() => {
       setThemeMode(document.documentElement.getAttribute('data-theme') || 'dark');
     });
@@ -41,6 +50,8 @@ const SankeyDiagram = ({ data }) => {
     const rejectedAfterCallback = Math.max(0, callbacks - interviews);
     const rejectedAfterInterview = Math.max(0, interviews - offers);
 
+    // Convert cumulative stage totals into explicit flows so the Sankey shows
+    // both successful progression and drop-off at each step.
     const links = [
       { source: sourceLabel, target: callbackLabel, value: callbacks, linkType: 'progress' },
       { source: sourceLabel, target: rejectedLabel, value: rejectedAfterApplication, linkType: 'reject' },
@@ -62,6 +73,7 @@ const SankeyDiagram = ({ data }) => {
     const height = 430;
 
     const svg = d3.select(svgRef.current);
+    // Rebuild the chart from scratch to avoid stale nodes after filter/theme updates.
     svg.selectAll('*').remove();
 
     svg.attr('viewBox', `0 0 ${width} ${height}`).attr('width', '100%').attr('height', height);
@@ -137,6 +149,7 @@ const SankeyDiagram = ({ data }) => {
       .style('font-size', '11px')
       .style('font-weight', 600)
       .style('fill', vizAxis)
+      // Hide labels on very small links so the diagram stays legible.
       .text((d) => d.value >= 25 ? d.value : '');
 
       }, [data, themeMode]);

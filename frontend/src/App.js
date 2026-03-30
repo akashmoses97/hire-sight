@@ -1,3 +1,10 @@
+/**
+ * Main frontend application shell.
+ *
+ * This file wires together the top-level routes, shared layout, header/footer,
+ * and the persisted theme toggle used across the Hire Sight interface.
+ */
+
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -10,12 +17,15 @@ function App() {
   const [theme, setTheme] = useState('dark');
 
   useEffect(() => {
+    // Restore the last selected theme so reloads keep the user's preference.
     const storedTheme = localStorage.getItem('hire-sight-theme');
     const initialTheme = storedTheme || 'dark';
     setTheme(initialTheme);
   }, []);
 
   useEffect(() => {
+    // Expose the theme on the root element because CSS and D3 components both
+    // read from the shared data-theme attribute.
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('hire-sight-theme', theme);
   }, [theme]);

@@ -1,3 +1,4 @@
+/* Define the shared theme tokens and layout styling for the frontend experience. */
 :root {
   --bg-gradient: radial-gradient(circle at 10% 10%, #dbeafe 0%, #f8fafc 45%, #f3f4f6 100%);
   --header-gradient: linear-gradient(135deg, #0f172a 0%, #1f2937 55%, #111827 100%);

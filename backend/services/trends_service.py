@@ -1,3 +1,9 @@
+"""Trend and heatmap analytics service.
+
+This module transforms job market and recruitment datasets into yearly trend
+series and role-based outcome summaries for the frontend visualizations.
+"""
+
 ROLE_MAPPING = {
     "data analyst": "Data Analyst",
     "data engineer": "Data Engineer",
@@ -38,21 +44,33 @@ ROLE_MAPPING = {
     "ui engineer": "UI Engineer",
 }
 
-
 def _normalize_role(role):
+    """Normalize a raw recruitment role into a display-friendly category.
+
+    Known role variants are collapsed into a smaller shared taxonomy so the
+    heatmap groups similar positions together instead of splitting counts.
+    """
     cleaned = str(role).strip()
     lowered = cleaned.lower()
     return ROLE_MAPPING.get(lowered, cleaned.title())
 from services.cleaning_service import get_stage_metrics
 
-
 def _safe_rate(numerator: int, denominator: int) -> float:
+    """Return a rounded ratio while protecting against empty denominators.
+
+    The helper keeps analytics code concise anywhere a percentage may need to
+    be computed from grouped counts.
+    """
     if denominator == 0:
         return 0.0
     return round(numerator / denominator, 4)
 
-
 def process_yearly_trends(all_data):
+    """Build the yearly hiring trends payload from job market postings.
+
+    The output contains sorted years, posting totals, and period-over-period
+    growth rates for use in the frontend yearly trends view.
+    """
     job_market = all_data.get("job_market")
     if job_market is None or job_market.empty or "year" not in job_market.columns:
         return {"years": [], "hiring_rates": [], "job_postings": []}
@@ -73,8 +91,11 @@ def process_yearly_trends(all_data):
 
 
 def process_role_heatmap_data(all_data):
-    """
-    Process role-based selection/rejection rates from the recruitment dataset.
+    """Build role-level selection and rejection metrics for the heatmap.
+
+    Recruitment rows are normalized to a consistent role taxonomy, filtered to
+    select/reject decisions, aggregated by role, and converted into counts and
+    percentages that the frontend can visualize directly.
     """
     recruitment_df = all_data.get('ai_recruitment')
     if recruitment_df is None or recruitment_df.empty:
@@ -99,6 +120,8 @@ def process_role_heatmap_data(all_data):
 
     df['cleaned_role'] = df['Role'].apply(_normalize_role)
 
+    # Count raw outcomes first, then derive rates so the response can expose
+    # both percentages and absolute sample sizes for each role.
     counts = (
         df.groupby(['cleaned_role', 'decision'])
         .size()

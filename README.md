@@ -31,7 +31,7 @@ Instead of just tracking the number of applications sent, we treat each transiti
 ## 🚀 Deployment
 
 ### Production URLs
-- **Frontend**: [https://hire-sight.vercel.app](https://hire-sight.vercel.app)
+- **Frontend**: [https://hire-sight-viz.vercel.app](https://hire-sight.vercel.app)
 - **Backend API**: [https://hire-sight-backend.onrender.com](https://hire-sight-backend.onrender.com)
 
 ### Deployment Platforms
@@ -84,8 +84,12 @@ hire-sight/
 ├── backend/
 │   ├── app.py                    # FastAPI application
 │   ├── data_store.py             # Global data storage
+│   ├── render.yaml               # Render deployment config
 │   ├── requirements.txt          # Python dependencies
 │   ├── data/                     # CSV data files
+│   │   ├── dataset.csv
+│   │   ├── job_applications_tracker_dataset.csv
+│   │   └── job_market.csv
 │   ├── models/
 │   │   └── data_models.py        # Pydantic models
 │   ├── routers/
@@ -104,6 +108,13 @@ hire-sight/
 │   ├── package.json
 │   ├── .env.example              # Environment variables template
 │   ├── vercel.json               # Vercel deployment config
+│   ├── build/                    # Production build output
+│   │   ├── asset-manifest.json
+│   │   ├── index.html
+│   │   ├── manifest.json
+│   │   └── static/
+│   │       ├── css/
+│   │       └── js/
 │   ├── public/
 │   │   ├── index.html
 │   │   └── manifest.json

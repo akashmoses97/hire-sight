@@ -1,3 +1,4 @@
+# Deploy the FastAPI backend on Render with environment-controlled startup loading.
 services:
   - type: web
     name: hire-sight-backend

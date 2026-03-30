@@ -1,3 +1,10 @@
+/**
+ * Dedicated yearly trends page container.
+ *
+ * This file fetches yearly market trend data from the backend and renders
+ * the surrounding page layout, navigation, and loading/error states.
+ */
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import YearlyTrendChart from './YearlyTrendChart';
@@ -11,6 +18,8 @@ const TrendsPage = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
+        // Keep the trends page self-contained by fetching its single aggregate
+        // dataset on mount.
         const data = await fetchYearlyTrends();
         setYearlyData(data);
       } catch (err) {

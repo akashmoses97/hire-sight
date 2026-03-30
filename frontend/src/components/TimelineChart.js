@@ -1,3 +1,10 @@
+/**
+ * Timeline chart for stage progression over time.
+ *
+ * This component renders a D3 multi-series line chart showing monthly counts
+ * for applications, callbacks, interviews, and offers across the pipeline.
+ */
+
 import React, { useRef, useEffect, useState } from 'react';
 import * as d3 from 'd3';
 
@@ -6,6 +13,8 @@ const TimelineChart = ({ data }) => {
   const [themeMode, setThemeMode] = useState(() => document.documentElement.getAttribute('data-theme') || 'dark');
 
   useEffect(() => {
+    // Re-render when the global theme flips so axes and labels pick up the
+    // updated CSS variable colors.
     const observer = new MutationObserver(() => {
       setThemeMode(document.documentElement.getAttribute('data-theme') || 'dark');
     });
@@ -37,6 +46,7 @@ const TimelineChart = ({ data }) => {
     const margin = { top: 20, right: 60, bottom: 40, left: 60 };
 
     const svg = d3.select(svgRef.current);
+    // Clear previous axes and lines before drawing the next timeline state.
     svg.selectAll('*').remove();
     svg.attr('viewBox', `0 0 ${width} ${height}`);
 
@@ -58,7 +68,7 @@ const TimelineChart = ({ data }) => {
       .domain(['applications', 'callbacks', 'interviews', 'offers'])
       .range(['#4f8bff', '#6bcf70', '#f7b731', '#ff6b6b']);
 
-    // axes
+    // Draw axes first so the colored series sit visually on top of the frame.
     svg.append('g')
       .attr('transform', `translate(0, ${height - margin.bottom})`)
       .call(d3.axisBottom(x).ticks(Math.min(records.length, 8)).tickFormat(d3.timeFormat('%b %Y')))
@@ -75,6 +85,7 @@ const TimelineChart = ({ data }) => {
     svg.selectAll('.tick text').attr('fill', vizText).style('font-weight', 600);
 
     ['applications', 'callbacks', 'interviews', 'offers'].forEach((key) => {
+      // Each stage is plotted as a separate line over the same monthly time scale.
       svg.append('path')
         .datum(records)
         .attr('fill', 'none')
