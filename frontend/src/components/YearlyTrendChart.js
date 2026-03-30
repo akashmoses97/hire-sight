@@ -1,8 +1,16 @@
+/**
+ * Yearly hiring trend chart container.
+ *
+ * This component displays the yearly trend payload returned by the backend
+ * and serves as the visualization surface for market trend information.
+ */
+
 import React from 'react';
 
-// Placeholder for Yearly trend chart to visualize hiring patterns across years [2]
+// Placeholder until a dedicated chart implementation replaces the raw payload preview.
 const YearlyTrendChart = ({ data }) => {
-  // This would be replaced with D3.js Bar/Line chart implementation
+  // Keeping the JSON visible makes it easier to verify the backend payload
+  // shape while the final visualization is still pending.
   
   if (!data) {
     return <div>Loading yearly trend data...</div>;

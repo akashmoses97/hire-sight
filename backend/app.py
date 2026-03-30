@@ -1,3 +1,9 @@
+"""Hire Sight backend application entrypoint.
+
+This file creates the FastAPI app, configures CORS, registers API routers,
+and loads the shared datasets into the in-memory store during startup.
+"""
+
 import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -34,7 +40,12 @@ app.include_router(viz_router, prefix="/api", tags=["visualization"])
 
 @app.on_event("startup")
 async def startup_event():
-    """Load and clean datasets on startup."""
+    """Populate the shared dataset cache when the API boots.
+
+    The startup hook respects the ``DATA_LOAD_ON_STARTUP`` environment flag,
+    loads and cleans all configured datasets, and refreshes ``all_data`` so
+    every route can read from the same in-memory state.
+    """
     data_load_on_startup = os.getenv("DATA_LOAD_ON_STARTUP", "true").lower() == "true"
     if data_load_on_startup:
         try:
@@ -52,7 +63,11 @@ async def startup_event():
 
 @app.get("/")
 async def root():
-    """Root endpoint with API information"""
+    """Return a lightweight API overview for health checks and discovery.
+
+    This endpoint exposes a welcome message, the interactive docs path, and
+    the main analytics/data routes expected by the frontend and developers.
+    """
     return {
         "message": "Welcome to Hire Sight API",
         "documentation": "/docs",

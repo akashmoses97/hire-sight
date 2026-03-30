@@ -1,3 +1,10 @@
+/**
+ * Role outcome heatmap visualization.
+ *
+ * This component uses D3 to render selection and rejection rates by job role
+ * from the recruitment dataset returned by the backend heatmap endpoint.
+ */
+
 import React, { useEffect, useMemo, useRef } from 'react';
 import * as d3 from 'd3';
 
@@ -34,6 +41,8 @@ const HeatMap = ({ data }) => {
       return null;
     }
 
+    // Flatten each role into one cell per outcome so D3 can bind rectangles
+    // directly to role/outcome combinations.
     const outcomes = data.outcomes ?? ['Selected %', 'Rejected %'];
     const roles = data.data.map((item) => item.role);
     const cells = data.data.flatMap((item) => [
@@ -69,6 +78,7 @@ const HeatMap = ({ data }) => {
     }
 
     const svg = d3.select(svgRef.current);
+    // Rebuild the SVG contents on each update to avoid leftover marks from a previous render.
     svg.selectAll('*').remove();
 
     const margin = { top: 132, right: 180, bottom: 52, left: 280 };
@@ -105,6 +115,7 @@ const HeatMap = ({ data }) => {
     const panelHeight = chartData.roles.length * cellHeight + 74;
 
     const defs = svg.append('defs');
+    // Define reusable gradients and shadows up front for the panel, glow, and legend styling.
     const panelGradient = defs
       .append('linearGradient')
       .attr('id', 'heatmap-panel-gradient')

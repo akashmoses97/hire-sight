@@ -1,3 +1,9 @@
+"""Low-level dataset download and file loading utilities.
+
+This file handles pulling CSV files from remote sources, locating local
+fallback files, and loading the available datasets into pandas DataFrames.
+"""
+
 import os
 import pandas as pd
 import requests
@@ -17,7 +23,12 @@ LOCAL_FILE_FALLBACKS = {
 }
 
 def download_datasets():
-    """Download all datasets from Google Drive, overwriting existing local files"""
+    """Download configured datasets into the local backend data directory.
+
+    For each dataset, the downloader prefers an already-present local file
+    path when one exists so refreshed content lands in the same location used
+    by the current project setup.
+    """
     for key, dataset in datasets.items():
         # Determine the target file path: use existing local file if available, else primary
         candidates = [dataset.get('file')] + LOCAL_FILE_FALLBACKS.get(key, [])
@@ -47,8 +58,11 @@ def download_datasets():
             print(f"Error downloading {key}: {e}")
         
 def load_datasets():
-    """
-    Load datasets from downloaded CSV files into pandas DataFrames
+    """Load all configured datasets from the local data directory.
+
+    The loader checks canonical file names and known fallback names, reads any
+    available CSV into a DataFrame, and returns empty DataFrames for missing
+    or unreadable sources so callers can handle partial availability cleanly.
     """
     data = {}
     for key, dataset in datasets.items():

@@ -1,3 +1,10 @@
+/**
+ * Frontend landing page.
+ *
+ * This component presents the main navigation cards that direct users to the
+ * pipeline, heatmap, and yearly trend visualization pages.
+ */
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';

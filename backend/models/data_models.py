@@ -1,3 +1,9 @@
+"""Pydantic models for backend API responses.
+
+This file defines the structured response shapes used for pipeline and
+timeline endpoints so payloads stay consistent across the backend.
+"""
+
 from pydantic import BaseModel
 from typing import Dict, List, Optional
 

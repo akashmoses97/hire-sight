@@ -1,3 +1,10 @@
+/**
+ * Dedicated heatmap page container.
+ *
+ * This file fetches role heatmap data from the backend and renders the page
+ * wrapper, navigation, loading states, and the HeatMap visualization.
+ */
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import HeatMap from './HeatMap';
@@ -11,6 +18,8 @@ const HeatmapPage = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
+        // This page only depends on one heatmap payload, so local page-level
+        // loading state is enough.
         const data = await fetchRoleHeatmap();
         setHeatmapData(data);
       } catch (err) {

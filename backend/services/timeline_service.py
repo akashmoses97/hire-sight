@@ -1,9 +1,19 @@
+"""Timeline analytics service.
+
+This file converts application records into monthly stage counts so the
+frontend can render time-based hiring pipeline trends and filtered views.
+"""
+
 import pandas as pd
 
 from services.cleaning_service import get_stage_metrics
 
-
 def _build_timeline(df: pd.DataFrame):
+    """Aggregate application rows into monthly stage totals.
+
+    The helper parses application dates, derives a month key, joins the stage
+    indicator columns, and returns chart-ready dictionaries sorted by month.
+    """
     if df.empty or "application_date" not in df.columns:
         return []
 
@@ -14,6 +24,8 @@ def _build_timeline(df: pd.DataFrame):
         return []
 
     work_df["month_key"] = work_df["application_date"].dt.to_period("M").astype(str)
+    # Stage indicators let us sum monthly counts without re-encoding status
+    # rules inside the grouping step.
     stage_metrics = get_stage_metrics(work_df)
     work_df = pd.concat([work_df, stage_metrics], axis=1)
 
@@ -35,16 +47,24 @@ def _build_timeline(df: pd.DataFrame):
         for _, row in grouped.iterrows()
     ]
 
-
 def process_timeline_data(all_data):
+    """Return the full monthly timeline payload for all applications.
+
+    The response preserves the ``{"timeline": ...}`` structure expected by
+    the frontend, even though the underlying aggregation is handled elsewhere.
+    """
     job_applications = all_data.get("job_applications")
     if job_applications is None:
         return None
 
     return {"timeline": _build_timeline(job_applications)}
 
-
 def get_timeline_by_filters(all_data, filters):
+    """Return monthly timeline data after applying filter dimensions.
+
+    The same role/company/job type/platform filters used by the pipeline view
+    are applied case-insensitively before monthly stage totals are computed.
+    """
     job_applications = all_data.get("job_applications")
     if job_applications is None or job_applications.empty or "application_date" not in job_applications.columns:
         return None
@@ -59,8 +79,12 @@ def get_timeline_by_filters(all_data, filters):
 
     return {"timeline": _build_timeline(df)}
 
-
 def get_timeline_by_year(all_data, year):
+    """Return monthly stage counts for one calendar year.
+
+    This is a year-focused variant of the timeline aggregation that keeps the
+    month number in the response for simpler year-specific charting.
+    """
     job_applications = all_data.get("job_applications")
     if job_applications is None or job_applications.empty or "application_date" not in job_applications.columns:
         return None

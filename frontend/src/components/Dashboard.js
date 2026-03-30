@@ -1,3 +1,10 @@
+/**
+ * Legacy combined dashboard page.
+ *
+ * This component fetches data for all major visualizations in one place and
+ * renders a single dashboard view with shared loading and error handling.
+ */
+
 import React, { useState, useEffect } from 'react';
 import SankeyDiagram from './SankeyDiagram';
 import HeatMap from './HeatMap';
