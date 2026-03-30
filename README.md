@@ -31,7 +31,7 @@ Instead of just tracking the number of applications sent, we treat each transiti
 ## 🚀 Deployment
 
 ### Production URLs
-- **Frontend**: [https://hire-sight-viz.vercel.app](https://hire-sight.vercel.app)
+- **Frontend**: [https://hire-sight-viz.vercel.app](https://hire-sight-viz.vercel.app)
 - **Backend API**: [https://hire-sight-backend.onrender.com](https://hire-sight-backend.onrender.com)
 
 ### Deployment Platforms
