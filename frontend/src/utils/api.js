@@ -120,3 +120,36 @@ export const fetchPipelineByRole = async (role) => {
     throw error;
   }
 };
+
+// Fetch personalized recommendations based on user profile
+export const fetchRecommendations = async (formData) => {
+  try {
+    const response = await axios.post(
+      `${API_URL}/recommendations/analyze`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
+    console.log('Recommendations response:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching recommendations:', error);
+    const backendMessage = error?.response?.data?.error;
+    const status = error?.response?.status;
+
+    if (backendMessage) {
+      throw new Error(backendMessage);
+    }
+
+    if (!error?.response) {
+      throw new Error(
+        `Cannot reach backend at ${API_URL}. Make sure backend is running on http://localhost:8000.`
+      );
+    }
+
+    throw new Error(`Recommendations request failed (${status || 'unknown status'}).`);
+  }
+};

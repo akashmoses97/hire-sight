@@ -12,6 +12,7 @@ import Home from './components/Home';
 import PipelinePage from './components/PipelinePage';
 import HeatmapPage from './components/HeatmapPage';
 import TrendsPage from './components/TrendsPage';
+import RecommendationsPage from './components/RecommendationsPage';
 
 function App() {
   const [theme, setTheme] = useState('dark');
@@ -54,6 +55,7 @@ function App() {
             <Route path="/pipeline" element={<PipelinePage />} />
             <Route path="/heatmap" element={<HeatmapPage />} />
             <Route path="/trends" element={<TrendsPage />} />
+             <Route path="/recommendations" element={<RecommendationsPage />} />
           </Routes>
         </main>
         <footer>

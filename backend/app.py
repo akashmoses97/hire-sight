@@ -7,12 +7,18 @@ and loads the shared datasets into the in-memory store during startup.
 import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
+
+# Load local environment variables from backend/.env when running locally.
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+load_dotenv(os.path.join(CURRENT_DIR, ".env"))
 
 # Import service placeholders
 from services.data_service import download_and_load_datasets
 from data_store import all_data
 from routers.data_router import router as data_router
 from routers.viz_router import router as viz_router
+from routers.recommendations_router import router as recommendations_router
 
 app = FastAPI(
     title="Hire Sight API",
@@ -37,6 +43,7 @@ app.add_middleware(
 # Include routers
 app.include_router(data_router, prefix="/api", tags=["data"])
 app.include_router(viz_router, prefix="/api", tags=["visualization"])
+app.include_router(recommendations_router, prefix="/api/recommendations", tags=["recommendations"])
 
 @app.on_event("startup")
 async def startup_event():
