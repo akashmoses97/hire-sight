@@ -55,18 +55,93 @@ const RecommendIcon = () => (
   </svg>
 );
 
-const TILES = [
+const ScopeIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="7" stroke="currentColor" strokeWidth="1.8" />
+    <circle cx="12" cy="12" r="2.2" fill="currentColor" />
+  </svg>
+);
+
+const RouteIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <path d="M5 18 C5 12 10 12 10 8 C10 5.8 11.8 4 14 4 C16.2 4 18 5.8 18 8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+    <circle cx="18" cy="8" r="2" fill="currentColor" />
+    <circle cx="5" cy="18" r="2" fill="currentColor" />
+  </svg>
+);
+
+const CompareIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <rect x="4" y="6" width="6" height="12" rx="1.8" fill="currentColor" opacity="0.9" />
+    <rect x="14" y="4" width="6" height="14" rx="1.8" fill="currentColor" opacity="0.45" />
+  </svg>
+);
+
+const CompassIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.8" />
+    <path d="M15.5 8.5 L13.4 13.4 L8.5 15.5 L10.6 10.6 Z" fill="currentColor" />
+  </svg>
+);
+
+const CalendarIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <rect x="4" y="6" width="16" height="14" rx="2" stroke="currentColor" strokeWidth="1.8" />
+    <path d="M8 4 V8 M16 4 V8 M4 10 H20" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+  </svg>
+);
+
+const PulseIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <path d="M3 12 H7 L10 7 L14 17 L17 12 H21" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const FlowInsightIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <path d="M5 7 H11 M13 7 H19 M5 17 H19" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <circle cx="12" cy="7" r="2" fill="currentColor" />
+  </svg>
+);
+
+const FilterInsightIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <path d="M4 6 H20 L13.5 13.2 V18 L10.5 19.6 V13.2 Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+  </svg>
+);
+
+const AlertInsightIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <path d="M12 5 L20 19 H4 Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+    <path d="M12 10 V14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <circle cx="12" cy="17" r="1.2" fill="currentColor" />
+  </svg>
+);
+
+const DETAIL_ICONS = [ScopeIcon, RouteIcon, CompareIcon, CompassIcon, CalendarIcon, PulseIcon];
+const INSIGHT_ICONS = [FlowInsightIcon, FilterInsightIcon, AlertInsightIcon];
+
+const DASHBOARD_TILES = [
   {
     Icon: PipelineIcon,
     title: 'Job Search Pipeline',
     badge: 'Flow Analytics',
-    description:
-      'See exactly where applications stall or succeed across every stage of your hiring funnel — from submission to offer.',
+    summaryPoints: [
+      'Track funnel momentum',
+      'Spot drop-off stages fast',
+      'Compare movement across stages',
+    ],
+    detailPoints: [
+      'Follow application volume from submission to offer',
+      'See which roles or platforms move candidates forward more reliably',
+      'Understand where momentum breaks before conversion drops further',
+    ],
     insights: [
       'Sankey diagram maps the full application journey',
       'Filter by role, company, job type & platform',
       'Pinpoint the highest drop-off stages at a glance',
     ],
+    outcome: 'Best for diagnosing where your process is leaking opportunities and where to focus first.',
     to: '/pipeline',
     cta: 'View Pipeline',
     c1: '#3b82f6',
@@ -76,13 +151,22 @@ const TILES = [
     Icon: HeatmapIcon,
     title: 'Role Heatmap',
     badge: 'Conversion Rates',
-    description:
-      'A colour-coded matrix that reveals which roles and stages have the strongest — and weakest — conversion performance.',
+    summaryPoints: [
+      'Compare role performance',
+      'Find strong conversion pockets',
+      'Flag weak target areas',
+    ],
+    detailPoints: [
+      'Scan categories quickly instead of reading a stage-by-stage funnel',
+      'See where your targeting is aligned and where it may be too broad',
+      'Prioritise stronger-fit roles before spending effort on weaker ones',
+    ],
     insights: [
       'Compare conversion rates across every role at a glance',
       'Identify hot spots where candidates advance most',
       'Spot cold zones that need a strategy shift',
     ],
+    outcome: 'Best for deciding which roles deserve more attention and which ones need a different positioning strategy.',
     to: '/heatmap',
     cta: 'View Heatmap',
     c1: '#06b6d4',
@@ -92,45 +176,63 @@ const TILES = [
     Icon: TrendsIcon,
     title: 'Yearly Trends',
     badge: 'Market Patterns',
-    description:
-      'Understand how hiring activity has evolved year over year and identify the best windows to apply.',
+    summaryPoints: [
+      'Track patterns over time',
+      'See stronger application windows',
+      'Separate trends from noise',
+    ],
+    detailPoints: [
+      'Compare activity, interviews, and offers across different periods',
+      'Tell whether a slowdown is seasonal or part of a bigger pattern',
+      'Use timing signals to plan when to apply more aggressively',
+    ],
     insights: [
       'Track application volume & offer rates by year',
       'Detect seasonal peaks in hiring activity',
       'Benchmark your pipeline against historical norms',
     ],
+    outcome: 'Best for understanding timing, seasonality, and whether your recent performance is part of a broader trend.',
     to: '/trends',
     cta: 'View Trends',
     c1: '#10b981',
     c2: '#06b6d4',
   },
-  {
-    Icon: RecommendIcon,
-    title: 'Personalized Strategy',
-    badge: 'AI-Powered',
-    description:
-      'Share your profile and receive LLM-generated recommendations tailored to your experience, target roles, and the data.',
-    insights: [
-      'Personalised action plan built from your resume',
-      'Targeted role & platform recommendations',
-      'Before / after comparison of your search approach',
-    ],
-    to: '/recommendations',
-    cta: 'Get My Strategy',
-    c1: '#8b5cf6',
-    c2: '#ec4899',
-  },
 ];
 
+const STRATEGY_FEATURE = {
+  Icon: RecommendIcon,
+  title: 'Personalized Strategy',
+  badge: 'AI Guidance',
+  summaryPoints: [
+    'Turn insight into action',
+    'Get role-specific guidance',
+    'Refine your search focus',
+  ],
+  detailPoints: [
+    'Translate dashboard patterns into concrete next steps',
+    'Decide what to prioritise based on your own search data',
+    'Turn broad analytics into a narrower, more actionable plan',
+  ],
+  highlights: [
+    'Resume-aware recommendations grounded in your experience',
+    'Role, platform, and focus suggestions based on observed patterns',
+    'Action-oriented guidance instead of another exploratory chart',
+  ],
+  outcome: 'Best for converting analysis into a practical search plan you can act on immediately.',
+  to: '/recommendations',
+  cta: 'Build My Strategy',
+  c1: '#8b5cf6',
+  c2: '#ec4899',
+};
+
 const STATS = [
-  { value: '4',    label: 'Interactive Views' },
+  { value: '3',    label: 'Analytical Views' },
   { value: '360°', label: 'Funnel Coverage' },
   { value: 'AI',   label: 'Strategy Engine' },
-  { value: 'Live', label: 'Data Insights' },
 ];
 
 const HOW_STEPS = [
-  { num: '01', label: 'Connect Data',  desc: 'Application records power every visualization in real time.' },
+  { num: '01', label: 'Connect Data',  desc: 'Application records power the three analytical views across the platform.' },
   { num: '02', label: 'Explore',       desc: 'Filter, compare, and drill into what matters most to you.' },
   { num: '03', label: 'Understand',    desc: 'Identify patterns, drop-offs, and high-conversion opportunities.' },
   { num: '04', label: 'Act',           desc: 'Get an AI strategy built on insights from your own data.' },
@@ -158,14 +260,6 @@ const Home = () => (
             Hire Sight turns raw application data into clear, actionable visuals — so you can see
             where opportunities are won, where they're lost, and exactly what to do next.
           </p>
-          <div className="hero-ctas">
-            <Link to="/pipeline" className="btn btn-future hero-btn-primary">
-              Explore the Pipeline
-            </Link>
-            <Link to="/recommendations" className="btn btn-outline-future hero-btn-secondary">
-              Get My Strategy
-            </Link>
-          </div>
         </div>
 
         <div className="home-hero-visual" aria-hidden="true">
@@ -180,7 +274,7 @@ const Home = () => (
               ))}
             </div>
             <div className="hpc-labels">
-              {['Apply', 'Screen', 'Interview', 'Final', 'Offer'].map(l => (
+              {['Applications', 'Callbacks', 'Interviews', 'Rejects', 'Offers'].map(l => (
                 <span key={l}>{l}</span>
               ))}
             </div>
@@ -200,49 +294,207 @@ const Home = () => (
     </div>
 
     {/* ── Section heading ── */}
-    <div className="home-section-head">
+    <div className="home-section-head home-dashboards-head">
       <h2 className="home-section-title">Explore the Dashboards</h2>
       <p className="home-section-sub">
-        Each view is purpose-built to answer a different question about your job search.
+        These three analytical views answer different questions about performance, conversion, and timing in your job search.
       </p>
+      <div className="home-dashboards-divider" aria-hidden="true" />
     </div>
 
     {/* ── Tiles ── */}
     <div className="home-tiles">
-      {TILES.map(({ Icon, title, badge, description, insights, to, cta, c1, c2 }) => (
+      {DASHBOARD_TILES.map(({ Icon, title, badge, summaryPoints, detailPoints, insights, outcome, to, cta, c1, c2 }) => (
         <Link key={to} to={to} className="home-tile-link">
           <article className="home-tile">
-            <div className="home-tile-top">
-              <div className="home-tile-icon" style={{ color: c1, background: `${c1}1a` }}>
-                <Icon />
+            <div className="home-tile-main">
+              <div className="home-tile-visual">
+                <div className="home-tile-icon" style={{ color: c1, background: `${c1}1a` }}>
+                  <Icon />
+                </div>
+                <span className="home-tile-badge" style={{ color: c1, background: `${c1}18` }}>
+                  {badge}
+                </span>
               </div>
-              <span className="home-tile-badge" style={{ color: c1, background: `${c1}18` }}>
-                {badge}
-              </span>
-            </div>
-            <h3 className="home-tile-title">{title}</h3>
-            <p className="home-tile-desc">{description}</p>
-            <ul className="home-tile-insights">
-              {insights.map(ins => (
-                <li key={ins}>
-                  <span
-                    className="home-tile-dot"
-                    style={{ background: `linear-gradient(135deg, ${c1}, ${c2})` }}
-                  />
-                  {ins}
-                </li>
-              ))}
-            </ul>
-            <div
-              className="home-tile-cta"
-              style={{ background: `linear-gradient(135deg, ${c1}, ${c2})` }}
-            >
-              {cta} <span className="tile-cta-arrow">→</span>
+              <div className="home-tile-copy">
+                <div className="home-tile-top">
+                  <div className="home-tile-title-wrap" style={{ borderColor: `${c1}2e` }}>
+                    <h3 className="home-tile-title" style={{ color: c1 }}>{title}</h3>
+                  </div>
+                  <div className="home-tile-summary">
+                    {summaryPoints.map((point) => (
+                      <span key={point} className="home-tile-summary-pill">
+                        {point}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="home-tile-matrix">
+                  <div className="home-tile-panel">
+                    <span className="home-tile-section-label" style={{ color: c1 }}>Why this matters</span>
+                    <ul className="home-tile-detail-list">
+                      {detailPoints.map((point, index) => {
+                        const ItemIcon = DETAIL_ICONS[index % DETAIL_ICONS.length];
+                        return (
+                          <li key={point}>
+                            <span className="home-tile-item-icon" style={{ color: c1, background: `${c1}16` }}>
+                              <ItemIcon />
+                            </span>
+                            <span className="home-tile-item-text">{point}</span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                  <div className="home-tile-panel">
+                    <span className="home-tile-section-label" style={{ color: c1 }}>What you can explore</span>
+                    <ul className="home-tile-insights">
+                      {insights.map((ins, index) => {
+                        const ItemIcon = INSIGHT_ICONS[index % INSIGHT_ICONS.length];
+                        return (
+                          <li key={ins}>
+                            <span className="home-tile-item-icon" style={{ color: c1, background: `${c1}16` }}>
+                              <ItemIcon />
+                            </span>
+                            <span className="home-tile-item-text">{ins}</span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                </div>
+                <div
+                  className="home-tile-outcome"
+                  style={{ borderColor: `${c1}36`, background: `${c1}10` }}
+                >
+                  <span className="home-tile-outcome-label" style={{ color: c1 }}>
+                    Best used for
+                  </span>
+                  <p className="home-tile-outcome-text">{outcome}</p>
+                </div>
+                <div
+                  className="home-tile-cta"
+                  style={{ background: `linear-gradient(135deg, ${c1}, ${c2})` }}
+                >
+                  {cta} <span className="tile-cta-arrow">→</span>
+                </div>
+              </div>
             </div>
           </article>
         </Link>
       ))}
     </div>
+
+    <section className="home-strategy-feature">
+      <div className="home-section-head home-strategy-head">
+        <h2 className="home-section-title">From Insight to Action</h2>
+        <p className="home-section-sub">
+          Personalised Strategy sits apart from the dashboards and helps you turn what you learned into a concrete next move.
+        </p>
+        <div className="home-strategy-divider" aria-hidden="true" />
+      </div>
+
+      <Link to={STRATEGY_FEATURE.to} className="strategy-feature-link">
+        <article className="strategy-feature-card">
+          <div className="strategy-feature-glow" aria-hidden="true" />
+          <div className="strategy-feature-main">
+            <div className="strategy-feature-visual">
+              <div
+                className="strategy-feature-icon"
+                style={{ color: STRATEGY_FEATURE.c1, background: `${STRATEGY_FEATURE.c1}20` }}
+              >
+                <STRATEGY_FEATURE.Icon />
+              </div>
+              <span
+                className="strategy-feature-badge"
+                style={{ color: STRATEGY_FEATURE.c1, background: `${STRATEGY_FEATURE.c1}18` }}
+              >
+                {STRATEGY_FEATURE.badge}
+              </span>
+            </div>
+
+            <div className="strategy-feature-copy">
+              <div
+                className="strategy-feature-title-wrap"
+                style={{ borderColor: `${STRATEGY_FEATURE.c1}2e` }}
+              >
+                <h3 className="strategy-feature-title" style={{ color: STRATEGY_FEATURE.c1 }}>
+                  {STRATEGY_FEATURE.title}
+                </h3>
+              </div>
+              <div className="strategy-feature-summary">
+                {STRATEGY_FEATURE.summaryPoints.map((point) => (
+                  <span key={point} className="strategy-feature-summary-pill">
+                    {point}
+                  </span>
+                ))}
+              </div>
+              <div className="strategy-feature-matrix">
+                <div className="strategy-feature-panel">
+                  <span className="strategy-feature-section-label" style={{ color: STRATEGY_FEATURE.c1 }}>
+                    Why this matters
+                  </span>
+                  <ul className="strategy-feature-list">
+                    {STRATEGY_FEATURE.detailPoints.map((item, index) => {
+                      const ItemIcon = DETAIL_ICONS[index % DETAIL_ICONS.length];
+                      return (
+                        <li key={item}>
+                          <span
+                            className="strategy-feature-item-icon"
+                            style={{ color: STRATEGY_FEATURE.c1, background: `${STRATEGY_FEATURE.c1}16` }}
+                          >
+                            <ItemIcon />
+                          </span>
+                          <span className="strategy-feature-item-text">{item}</span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+                <div className="strategy-feature-panel">
+                  <span className="strategy-feature-section-label" style={{ color: STRATEGY_FEATURE.c1 }}>
+                    What you get
+                  </span>
+                  <ul className="strategy-feature-list">
+                    {STRATEGY_FEATURE.highlights.map((item, index) => {
+                      const ItemIcon = INSIGHT_ICONS[index % INSIGHT_ICONS.length];
+                      return (
+                        <li key={item}>
+                          <span
+                            className="strategy-feature-item-icon"
+                            style={{ color: STRATEGY_FEATURE.c1, background: `${STRATEGY_FEATURE.c1}16` }}
+                          >
+                            <ItemIcon />
+                          </span>
+                          <span className="strategy-feature-item-text">{item}</span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
+              <div
+                className="strategy-feature-outcome"
+                style={{ borderColor: `${STRATEGY_FEATURE.c1}36`, background: `${STRATEGY_FEATURE.c1}10` }}
+              >
+                <span className="strategy-feature-section-label" style={{ color: STRATEGY_FEATURE.c1 }}>
+                  Best used for
+                </span>
+                <p className="strategy-feature-outcome-text">{STRATEGY_FEATURE.outcome}</p>
+              </div>
+              <div
+                className="strategy-feature-cta"
+                style={{
+                  background: `linear-gradient(135deg, ${STRATEGY_FEATURE.c1}, ${STRATEGY_FEATURE.c2})`,
+                }}
+              >
+                {STRATEGY_FEATURE.cta} <span className="tile-cta-arrow">→</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </Link>
+    </section>
 
     {/* ── How it works ── */}
     <section className="home-how">
