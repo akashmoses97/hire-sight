@@ -11,8 +11,9 @@ from utils.data_sources import KAGGLE_DATASETS
 
 # Replace the hardcoded datasets dictionary with:
 datasets = KAGGLE_DATASETS
-# Paths for data storage
-DATA_DIR = 'data'
+# Paths for data storage (anchored to backend/data, independent of cwd)
+BACKEND_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = os.path.join(BACKEND_DIR, 'data')
 if not os.path.exists(DATA_DIR):
     os.makedirs(DATA_DIR)
 

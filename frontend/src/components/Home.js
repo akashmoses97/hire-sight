@@ -42,6 +42,15 @@ const Home = () => {
             </div>
           </div>
         </div>
+         <div className="col-md-4 mb-4">
+           <div className="card h-100 futuristic-card">
+             <div className="card-body text-center">
+               <h5 className="card-title">Your Personalized Strategy</h5>
+               <p className="card-text">Get recommendations based on your profile and market data.</p>
+               <Link to="/recommendations" className="btn btn-future">Get Recommendations</Link>
+             </div>
+           </div>
+         </div>
       </div>
     </div>
   );

@@ -1,0 +1,32 @@
+/* BeforeAfterComparison.css */
+
+.before-after-container {
+  width: 100%;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+  background: linear-gradient(135deg, rgba(100, 200, 255, 0.05), rgba(150, 100, 255, 0.02));
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.before-after-svg {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  min-height: 300px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .before-after-container {
+    padding: 1rem;
+    overflow-x: scroll;
+  }
+
+  .before-after-svg {
+    min-width: 600px;
+  }
+}
