@@ -1,316 +1,289 @@
-
 # Hire Sight
 
-## Visual Analytics for the Tech Job Search Pipeline
-**CSCE 679 Project - Team 3**
+**Visual Analytics for the Tech Job Search Pipeline**
+CSCE 679 · Team 3 · Texas A&M University
 
-Hire Sight is an interactive dashboard for tech job search pipeline analytics. The system models the hiring pipeline as: Applications → Callbacks → Interviews → Offers, providing visual insights into conversion rates and hiring patterns.
+Hire Sight transforms the tech job search into a data-driven pipeline. It models the hiring funnel as **Applications → Callbacks → Interviews → Offers**, surfacing conversion rates, timing patterns, and personalised recommendations so you can search smarter — not harder.
 
-## Background and Motivation
+---
 
-The technology job search is a multi-stage and high-volume process. Graduate students submit numerous applications without clear visibility into progression, conversion rates, or timelines. For many, especially international applicants, job outcomes impact visa status and career stability. Most students experience the job search as chaos with high volume applications and limited visibility.
+## Live Demo
 
-Instead of just tracking the number of applications sent, we treat each transition between stages as a conversion rate. The idea is to treat the job search like an engineering pipeline.
+| Service | URL |
+|---------|-----|
+| Frontend | https://hire-sight-viz.vercel.app |
+| Backend API | https://hire-sight-backend.onrender.com |
+| API Docs | https://hire-sight-backend.onrender.com/docs |
 
-## Research Questions
-
-1. Where do applications drop off?
-2. How do conversion rates vary across roles?
-3. What are time-to-callback and time-to-offer metrics?
-4. How do hiring patterns change across years?
-5. How do job market trends correlate with offer rates?
+---
 
 ## Features
 
-- **Pipeline Visualization**: Sankey diagram showing job application flow from applications through offers
-- **Role-based Analysis**: Heatmap showing conversion rates by role
-- **Timeline Tracking**: Charts showing application activity over time
-- **Yearly Trends**: Analysis of hiring patterns across years
-- **Interactive Filters**: Filter data by role, company, job type, and platform
+### Pipeline Dashboard
+Interactive Sankey funnel diagram showing how applications flow through each hiring stage. Filterable by role, company, job type, and platform — all updates happen in-place without resetting your scroll position.
 
-## 🚀 Deployment
+- **Quick Highlights** — Four auto-computed cards (top company by volume, best-callback role, top platform, best job type) you can click to instantly apply a filter
+- **Pipeline Summary** — Stage-level counts (Applications, Callbacks, Interviews, Offers)
+- **Key Insights** — Auto-computed conversion rates: Callback Rate, Callback→Interview, Interview→Offer, and Overall Success Rate
+- **Activity Timeline** — Monthly line chart tracking application volume across all stages
 
-### Production URLs
-- **Frontend**: [https://hire-sight-viz.vercel.app](https://hire-sight-viz.vercel.app)
-- **Backend API**: [https://hire-sight-backend.onrender.com](https://hire-sight-backend.onrender.com)
+### Role Heatmap
+D3 heatmap showing how each job role converts through the pipeline. Quickly spots which roles reach the interview stage most reliably.
 
-### Deployment Platforms
-- **Frontend**: Vercel (React app)
-- **Backend**: Render (FastAPI/Python)
+### Yearly Trends
+Bar/line chart showing job market posting trends year-over-year. Reveals hiring seasonality and growth patterns across the broader market.
 
-## 🛠 Local Development Setup
+### Personalised Recommendations (AI-Powered)
+Enter your current pipeline metrics and target role; optionally upload your resume PDF. The backend parses your resume, benchmarks your stats against the dataset, and returns LLM-generated guidance on role fit, application volume, timing strategy, and experience matching.
+
+### UI
+- Light / dark mode toggle (persisted to localStorage)
+- Fully responsive layout (4 → 2 → 1 column grids on mobile)
+- Glassmorphism card aesthetic with animated gradient accents
+
+---
+
+## Tech Stack
+
+| Layer | Technologies |
+|-------|-------------|
+| Frontend | React 18, D3.js 7, Axios, React Router 6, Bootstrap 5 |
+| Backend | FastAPI, Uvicorn, Pandas, Pydantic, PyPDF |
+| Deployment | Vercel (frontend), Render (backend) |
+| Data | CSV files loaded at startup into an in-memory Pandas cache |
+
+---
+
+## Project Structure
+
+```
+hire-sight/
+├── README.md
+├── .gitignore
+├── backend/
+│   ├── app.py                          # FastAPI app, CORS, router registration, startup event
+│   ├── data_store.py                   # Global in-memory dataset cache (dict of DataFrames)
+│   ├── render.yaml                     # Render deployment config (Python 3.12, uvicorn)
+│   ├── requirements.txt
+│   ├── data/
+│   │   ├── job_applications_tracker_dataset.csv   # Primary job tracking data
+│   │   ├── dataset.csv                            # AI recruitment / interview decisions
+│   │   └── job_market.csv                         # Job market trends & postings
+│   ├── models/
+│   │   └── data_models.py              # Pydantic response models
+│   ├── routers/
+│   │   ├── viz_router.py               # Pipeline, timeline, trends, heatmap, highlights endpoints
+│   │   ├── data_router.py              # Raw dataset access endpoints
+│   │   └── recommendations_router.py  # Personalised recommendations (profile + resume upload)
+│   ├── services/
+│   │   ├── pipeline_service.py         # Stage totals, conversion rates, per-role breakdown, highlights
+│   │   ├── timeline_service.py         # Monthly stage aggregation
+│   │   ├── trends_service.py           # Yearly trends & role heatmap
+│   │   ├── personalization_service.py  # Benchmark comparison & outcome prediction
+│   │   ├── llm_service.py              # LLM-generated recommendations
+│   │   ├── resume_service.py           # PDF resume parsing (skills, roles, experience)
+│   │   ├── cleaning_service.py         # Data normalisation, status mapping, stage indicators
+│   │   └── data_service.py             # Dataset download and load orchestration
+│   └── utils/
+│       ├── data_sources.py             # Google Drive dataset metadata
+│       └── data_utils.py               # CSV download & DataFrame loading
+└── frontend/
+    ├── package.json
+    ├── .env.example
+    ├── vercel.json                     # Vercel SPA rewrite config
+    └── src/
+        ├── App.js                      # Router, theme toggle (light/dark)
+        ├── App.css                     # Global styles and all component CSS (pp-* namespace)
+        ├── index.js
+        ├── components/
+        │   ├── Home.js                         # Landing page — 5 feature cards
+        │   ├── PipelinePage.js                 # Main dashboard (Sankey + filters + insights)
+        │   ├── HeatmapPage.js                  # Role conversion heatmap page
+        │   ├── TrendsPage.js                   # Yearly trends page
+        │   ├── RecommendationsPage.js          # Personalised recommendations page
+        │   ├── SankeyDiagram.js                # D3 Sankey flow diagram
+        │   ├── HeatMap.js                      # D3 role × stage heatmap
+        │   ├── TimelineChart.js                # D3 monthly activity line chart
+        │   ├── YearlyTrendChart.js             # D3 yearly trends chart
+        │   ├── PersonalizationModal.js         # Profile input form
+        │   ├── PersonalizationVisuals.js       # Before/after comparison charts
+        │   ├── RecommendationCards.js          # LLM insight display cards
+        │   ├── BeforeAfterComparison.js        # Side-by-side metrics comparison
+        │   ├── ImprovementSummary.js           # Projected improvement summary
+        │   └── Dashboard.js                    # Legacy dashboard component
+        └── utils/
+            └── api.js                          # Axios API client (all endpoint helpers)
+```
+
+---
+
+## API Endpoints
+
+Base URL — Local: `http://localhost:8000/api` · Production: `https://hire-sight-backend.onrender.com/api`
+
+### Visualization
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/pipeline` | Sankey data — stage totals + conversion rates. Query params: `job_role`, `company_name`, `job_type`, `platform` |
+| GET | `/pipeline/highlights` | Top entry per dimension (company by volume, role/platform/job-type by conversion rate) |
+| GET | `/pipeline/roles` | Distinct job roles for filter dropdown |
+| GET | `/pipeline/companies` | Distinct companies for filter dropdown |
+| GET | `/pipeline/job-types` | Distinct job types for filter dropdown |
+| GET | `/pipeline/platforms` | Distinct platforms for filter dropdown |
+| GET | `/pipeline/by-role/{role}` | Pipeline metrics for a single role |
+| GET | `/timeline` | Monthly stage counts. Same query params as `/pipeline` |
+| GET | `/timeline/by-year/{year}` | Monthly timeline for one calendar year |
+| GET | `/timeline/by-role/{role}` | Timeline filtered to one role |
+| GET | `/yearly-trends` | Year-over-year job market posting trends |
+| GET | `/role-heatmap` | Role × stage conversion rates for heatmap |
+
+### Recommendations
+
+| Method | Path | Description |
+|--------|------|-------------|
+| POST | `/recommendations/analyze` | Accepts `profile_json` (form field) + optional `resume` (PDF). Returns user metrics, benchmarks, predicted outcomes, and LLM insights |
+
+### Raw Data
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/data/job_applications` | Full job applications dataset as JSON |
+| GET | `/data/recruitment_data` | AI recruitment dataset |
+| GET | `/data/job_market_data` | Job market dataset |
+| GET | `/data/all` | All three datasets |
+| GET | `/data/summary` | Row counts and column names per dataset |
+
+### Health
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/` | API info and available endpoint list |
+
+---
+
+## Local Development Setup
 
 ### Prerequisites
 - Python 3.12+
-- Node.js 16+
-- Git
+- Node.js 18+
 
-### Backend Setup
+### Backend
+
 ```bash
 cd backend
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 uvicorn app:app --reload --host 0.0.0.0 --port 8000
 ```
 
-### Frontend Setup
+Interactive API docs available at `http://localhost:8000/docs`
+
+### Frontend
+
 ```bash
 cd frontend
 npm install
 npm start
 ```
 
+Opens at `http://localhost:3000`
+
 ### Environment Variables
 
-#### Backend (.env or Render Environment Variables)
+**Backend** — create `backend/.env`:
 ```bash
-PYTHON_VERSION=3.12.0
 DATA_LOAD_ON_STARTUP=true
 ALLOWED_ORIGINS=http://localhost:3000,http://localhost:8000
 ```
 
-#### Frontend (.env.local or Vercel Environment Variables)
+**Frontend** — create `frontend/.env.local`:
 ```bash
 REACT_APP_API_URL=http://localhost:8000/api
 ```
 
-## 📁 Project Structure
+---
+
+## Data Pipeline
 
 ```
-hire-sight/
-├── .gitignore
-├── README.md
-├── backend/
-│   ├── app.py                    # FastAPI application
-│   ├── data_store.py             # Global data storage
-│   ├── render.yaml               # Render deployment config
-│   ├── requirements.txt          # Python dependencies
-│   ├── data/                     # CSV data files
-│   │   ├── dataset.csv
-│   │   ├── job_applications_tracker_dataset.csv
-│   │   └── job_market.csv
-│   ├── models/
-│   │   └── data_models.py        # Pydantic models
-│   ├── routers/
-│   │   ├── data_router.py        # Raw data endpoints
-│   │   └── viz_router.py         # Visualization endpoints
-│   ├── services/
-│   │   ├── cleaning_service.py   # Data cleaning utilities
-│   │   ├── data_service.py       # Data loading service
-│   │   ├── pipeline_service.py   # Pipeline analytics
-│   │   ├── timeline_service.py   # Timeline analytics
-│   │   └── trends_service.py     # Trends analytics
-│   └── utils/
-│       ├── data_sources.py       # Data source management
-│       └── data_utils.py         # Data utilities
-├── frontend/
-│   ├── package.json
-│   ├── .env.example              # Environment variables template
-│   ├── vercel.json               # Vercel deployment config
-│   ├── build/                    # Production build output
-│   │   ├── asset-manifest.json
-│   │   ├── index.html
-│   │   ├── manifest.json
-│   │   └── static/
-│   │       ├── css/
-│   │       └── js/
-│   ├── public/
-│   │   ├── index.html
-│   │   └── manifest.json
-│   └── src/
-│       ├── App.js
-│       ├── index.js
-│       ├── App.css
-│       ├── index.css
-│       ├── components/
-│       │   ├── Dashboard.js      # Main dashboard
-│       │   ├── Home.js           # Homepage
-│       │   ├── PipelinePage.js   # Pipeline visualization
-│       │   ├── HeatmapPage.js    # Heatmap visualization
-│       │   ├── TrendsPage.js     # Trends visualization
-│       │   ├── SankeyDiagram.js  # Sankey chart component
-│       │   ├── HeatMap.js        # Heatmap component
-│       │   ├── TimelineChart.js  # Timeline chart
-│       │   └── YearlyTrendChart.js # Yearly trends chart
-│       └── utils/
-│           └── api.js            # API client functions
+Google Drive CSVs
+       ↓  (startup download via data_service.py)
+Local data/ directory
+       ↓  (cleaning_service.py)
+Normalised Pandas DataFrames
+       ↓  (data_store.py — global in-memory cache)
+FastAPI services (pipeline, timeline, trends, recommendations)
+       ↓  (REST JSON responses)
+React + D3.js visualisations
 ```
 
-## 🔌 API Endpoints
+### Datasets
 
-### Base URL
-- **Local**: `http://localhost:8000/api`
-- **Production**: `https://hire-sight-backend.onrender.com/api`
+| File | Description | Size |
+|------|-------------|------|
+| `job_applications_tracker_dataset.csv` | Per-application records with status, role, company, platform, job type | ~41 KB |
+| `dataset.csv` | AI recruitment interview transcripts and hiring decisions | ~78 MB |
+| `job_market.csv` | Job market postings with salary, skills, location, year | ~32 KB |
 
-### Visualization Endpoints
-- `GET /pipeline` - Job application pipeline data (with optional filters)
-- `GET /timeline` - Timeline data for application tracking
-- `GET /yearly-trends` - Yearly hiring trends
-- `GET /role-heatmap` - Role-based conversion heatmap
+### Stage Mapping
 
-### Filter Endpoints
-- `GET /pipeline/roles` - Available job roles
-- `GET /pipeline/companies` - Available companies
-- `GET /pipeline/job-types` - Available job types
-- `GET /pipeline/platforms` - Available platforms
+Each job application row is mapped to binary stage indicators:
 
-### Data Endpoints
-- `GET /data/job_applications` - Raw job applications data
-- `GET /data/recruitment_data` - Raw recruitment data
-- `GET /data/job_market_data` - Raw job market data
-- `GET /data/all` - All datasets combined
-- `GET /data/summary` - Dataset summary statistics
+| Stage | Status values that count as `1` |
+|-------|--------------------------------|
+| Application | Every row |
+| Callback | Assessment Pending, Phone Screen, Interview Scheduled, Selected, Rejected |
+| Interview | Interview Scheduled, Selected |
+| Offer | Selected |
 
-### Health Check
-- `GET /` - API information and available endpoints
+---
 
-## 🧩 Component Architecture
+## Deployment
 
-### Backend Components
-- **app.py**: FastAPI application with CORS setup and router configuration
-- **data_store.py**: Global data storage using Python dictionaries
-- **routers/viz_router.py**: Visualization API endpoints with filtering support
-- **services/pipeline_service.py**: Pipeline analytics and Sankey diagram data
-- **services/timeline_service.py**: Timeline chart data processing
-- **services/trends_service.py**: Yearly trends and heatmap data
-- **utils/data_utils.py**: Data downloading and loading from Google Drive
+### Automatic (GitHub → main branch)
+- Vercel rebuilds and redeploys the frontend on every push to `main`
+- Render rebuilds and restarts the backend on every push to `main`
 
-### Frontend Components
-- **App.js**: Main React application with routing
-- **Home.js**: Landing page with navigation
-- **PipelinePage.js**: Main pipeline visualization with filters
-- **SankeyDiagram.js**: D3.js Sankey diagram implementation
-- **TimelineChart.js**: D3.js timeline chart implementation
-- **HeatMap.js**: D3.js heatmap visualization
-- **api.js**: Axios-based API client with error handling
+### Manual
+- **Vercel**: Dashboard → Project → Deployments → Redeploy
+- **Render**: Dashboard → Service → Manual Deploy
 
-## 🔧 Technologies Used
+### Production Environment Variables
 
-### Backend
-- **FastAPI**: Modern Python web framework
-- **Pandas**: Data manipulation and analysis
-- **Uvicorn**: ASGI server for FastAPI
-- **Python-multipart**: File upload handling
+Set these in the respective hosting dashboards:
 
-### Frontend
-- **React**: UI framework
-- **D3.js**: Data visualization library
-- **Axios**: HTTP client
-- **React Router**: Client-side routing
-- **Bootstrap**: CSS framework
-- **Create React App**: Build tooling
+**Render (backend):**
+```
+DATA_LOAD_ON_STARTUP=true
+ALLOWED_ORIGINS=https://hire-sight-viz.vercel.app
+```
 
-### Deployment
-- **Vercel**: Frontend hosting and CI/CD
-- **Render**: Backend hosting and CI/CD
-- **GitHub**: Version control and deployment triggers
+**Vercel (frontend):**
+```
+REACT_APP_API_URL=https://hire-sight-backend.onrender.com/api
+```
 
-## 📊 Data Pipeline
+---
 
-1. **Data Sources**: CSV files hosted on Google Drive
-2. **Data Loading**: Automatic download and caching on startup
-3. **Data Cleaning**: Pandas-based data preprocessing
-4. **API Layer**: RESTful endpoints for data access
-5. **Visualization**: D3.js charts for interactive analytics
-6. **Filtering**: Real-time data filtering by multiple dimensions
+## Contributing
 
-## 🚀 Deployment Process
+```bash
+git checkout -b feature/your-feature
+# make changes
+git commit -m "feat: description"
+git push origin feature/your-feature
+# open a Pull Request against main
+```
 
-### Automatic Deployment
-- Push to `main` branch triggers automatic deployment
-- Vercel rebuilds frontend, Render rebuilds backend
-- Environment variables configured in respective dashboards
+---
 
-### Manual Deployment
-- **Vercel**: Dashboard → Deployments → "Redeploy"
-- **Render**: Dashboard → Service → "Manual Deploy"
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Make changes and test locally
-4. Commit changes: `git commit -am 'Add feature'`
-5. Push to branch: `git push origin feature-name`
-6. Create a Pull Request
-
-## 📝 License
-
-This project is part of CSCE 679 coursework at Texas A&M University. 
-- **components/TimelineChart.js**: Displays application activity over time
-- **components/YearlyTrendChart.js**: Presents hiring trends across years 
-- **utils/api.js**: Handles backend API communication
-
-## Data Flow
-1. Backend fetches and processes CSV datasets from Google Drive
-2. API endpoints serve both raw data and processed visualization-specific data
-3. Frontend homepage allows navigation to individual visualization pages
-4. Each page retrieves and renders data with D3.js
-
-This architecture separates data processing from visualization, supporting the project's goal of transforming job search tracking into structured visual exploration [1][2].
-
-## Setup Instructions
-
-### Backend
-
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
-
-2. Create a Python virtual environment:
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
-
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Run the FastAPI server:
-   ```bash
-   uvicorn app:app --reload
-   ```
-
-5. Access the API documentation at http://localhost:8000/docs
-
-### Frontend
-
-1. Navigate to the frontend directory:
-   ```bash
-   cd frontend
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm start
-   ```
-
-4. Open your browser and visit http://localhost:3000
-
-## Data Sources
-
-- Job Applications Tracker Dataset (hosted on Google Drive)
-- AI Recruitment Pipeline Dataset (hosted on Google Drive)
-- Job Market Insight Dataset (hosted on Google Drive)
-
-## Tech Stack
-
-- **Frontend**: React + D3.js
-- **Backend**: Python with FastAPI
-- **Data Processing**: Pandas for dataset manipulation
-
-## Team Members
+## Team
 
 - Akash Moses Guttedar
-- Darshnil Rana 
+- Darshnil Rana
 - Kanishk Chhabra
 - Arunima Chowdhury
+
+CSCE 679 — Texas A&M University

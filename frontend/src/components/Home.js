@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { pingBackend } from '../utils/api';
 
 const PipelineIcon = () => (
   <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
@@ -238,7 +239,10 @@ const HOW_STEPS = [
   { num: '04', label: 'Act',           desc: 'Get an AI strategy built on insights from your own data.' },
 ];
 
-const Home = () => (
+const Home = () => {
+  useEffect(() => { pingBackend(); }, []);
+
+  return (
   <div className="home-wrapper">
 
     {/* ── Hero ── */}
@@ -516,6 +520,7 @@ const Home = () => (
     </section>
 
   </div>
-);
+  );
+};
 
 export default Home;

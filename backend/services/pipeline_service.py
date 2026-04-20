@@ -186,6 +186,73 @@ def get_all_platforms(all_data):
     platforms = job_applications["platform"].dropna().astype("string").str.strip()
     return sorted(platforms[platforms != ""].unique().tolist())
 
+def get_pipeline_highlights(all_data):
+    """Return the standout entry for each filter dimension across the full dataset.
+
+    Surfaces the top company by volume, best-callback role, top-callback platform,
+    and best-offer job type so the frontend can show guided filter shortcuts.
+    Requires at least 3 applications per group to be considered.
+    """
+    job_applications = all_data.get("job_applications")
+    if job_applications is None or job_applications.empty:
+        return None
+
+    df = job_applications.copy()
+    stage_df = get_stage_metrics(df)
+    df["_apps"] = stage_df["applications"]
+    df["_cbs"]  = stage_df["callbacks"]
+    df["_ivs"]  = stage_df["interviews"]
+    df["_offs"] = stage_df["offers"]
+
+    MIN_APPS = 3
+
+    def _group(col):
+        return df.groupby(col)[["_apps", "_cbs", "_ivs", "_offs"]].sum()
+
+    def _top_by_count(col, label):
+        if col not in df.columns:
+            return None
+        g = _group(col)
+        g = g[g["_apps"] >= MIN_APPS]
+        if g.empty:
+            return None
+        best = g["_apps"].idxmax()
+        r = g.loc[best]
+        return {
+            "name": best, "label": label,
+            "applications": int(r["_apps"]), "callbacks": int(r["_cbs"]),
+            "interviews": int(r["_ivs"]), "offers": int(r["_offs"]),
+            "rate": _safe_rate(int(r["_cbs"]), int(r["_apps"])),
+            "rate_label": "callback rate",
+        }
+
+    def _top_by_rate(col, num_col, den_col, label, rate_label):
+        if col not in df.columns:
+            return None
+        g = _group(col)
+        g = g[g["_apps"] >= MIN_APPS]
+        if g.empty:
+            return None
+        g["_rate"] = g.apply(
+            lambda row: _safe_rate(int(row[num_col]), int(row[den_col])), axis=1
+        )
+        best = g["_rate"].idxmax()
+        r = g.loc[best]
+        return {
+            "name": best, "label": label,
+            "applications": int(r["_apps"]), "callbacks": int(r["_cbs"]),
+            "interviews": int(r["_ivs"]), "offers": int(r["_offs"]),
+            "rate": round(float(r["_rate"]), 4),
+            "rate_label": rate_label,
+        }
+
+    return {
+        "top_company":   _top_by_count("company_name", "Most Applied To"),
+        "best_role":     _top_by_rate("job_role",  "_cbs", "_apps", "Best Callback Rate", "callback rate"),
+        "best_platform": _top_by_rate("platform",  "_cbs", "_apps", "Top Platform",       "callback rate"),
+        "best_job_type": _top_by_rate("job_type",  "_offs", "_apps", "Best Offer Rate",   "offer rate"),
+    }
+
 def get_all_roles(all_data):
     """Return sorted unique job roles from the applications dataset.
 
