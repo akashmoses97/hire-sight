@@ -20,7 +20,12 @@ if not os.path.exists(DATA_DIR):
 LOCAL_FILE_FALLBACKS = {
     'job_applications': ['job_applications_tracker_dataset.csv', 'job_applications.csv'],
     'ai_recruitment': ['dataset.csv', 'recruitment_data.csv'],
-    'job_market': ['job_market.csv', 'job_market_data.csv']
+    'job_market': ['job_market.csv', 'job_market_data.csv'],
+    'yearly_trends_job_market': [
+        'yearly_trends_job_market.csv',
+        'Engineering_Jobs_Insight_Dataset.csv',
+        'engineering_jobs_insight_dataset.csv',
+    ],
 }
 
 def download_datasets():
@@ -31,6 +36,13 @@ def download_datasets():
     by the current project setup.
     """
     for key, dataset in datasets.items():
+        if dataset.get('source') == 'local':
+            print(
+                f"Skipping automatic download for {key}; "
+                f"the backend uses the cached local file in {DATA_DIR}."
+            )
+            continue
+
         # Determine the target file path: use existing local file if available, else primary
         candidates = [dataset.get('file')] + LOCAL_FILE_FALLBACKS.get(key, [])
         existing_path = None

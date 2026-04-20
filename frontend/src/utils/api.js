@@ -96,10 +96,41 @@ export const fetchPipelinePlatforms = async () => {
   }
 };
 
-// Fetch yearly trends data for job market visualization [2]
-export const fetchYearlyTrends = async () => {
+export const fetchYearlyTrendFilterOptions = async () => {
   try {
-    const response = await axios.get(`${API_URL}/yearly-trends`);
+    const response = await axios.get(`${API_URL}/yearly-trends/options`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching yearly trend filter options:', error);
+    return {
+      job_titles: [],
+      companies: [],
+      locations: [],
+      job_types: [],
+      experience_buckets: [],
+      salary_buckets: [],
+      top_n_options: [5, 8, 10, 12],
+    };
+  }
+};
+
+// Fetch yearly trends data for job market visualization [2]
+export const fetchYearlyTrends = async (filters = {}) => {
+  try {
+    const params = new URLSearchParams();
+    Object.entries(filters).forEach(([key, value]) => {
+      if (typeof value === 'boolean') {
+        if (value) params.append(key, 'true');
+        return;
+      }
+
+      if (value && value !== 'All') {
+        params.append(key, value);
+      }
+    });
+
+    const endpoint = `${API_URL}/yearly-trends${params.toString() ? `?${params.toString()}` : ''}`;
+    const response = await axios.get(endpoint);
     return response.data;
   } catch (error) {
     console.error('Error fetching yearly trends:', error);
