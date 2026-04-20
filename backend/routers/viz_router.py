@@ -7,7 +7,7 @@ including pipeline, timeline, yearly trends, and role heatmap views.
 from fastapi import APIRouter, HTTPException
 from services.pipeline_service import process_pipeline_data, get_pipeline_by_filters, get_all_roles, get_all_companies, get_all_job_types, get_all_platforms, get_pipeline_highlights
 from services.timeline_service import process_timeline_data, get_timeline_by_filters
-from services.trends_service import process_yearly_trends
+from services.trends_service import process_yearly_trends, get_yearly_trend_filter_options
 from services.trends_service import process_role_heatmap_data
 from data_store import all_data  # Import the global data
 
@@ -101,14 +101,39 @@ async def timeline_data(job_role: str = None, company_name: str = None, job_type
         return data
     raise HTTPException(status_code=500, detail="Timeline data not available")
 
+@router.get("/yearly-trends/options")
+async def yearly_trend_options():
+    """Return normalized filter options for the yearly trends page."""
+    return get_yearly_trend_filter_options(all_data)
+
+
 @router.get("/yearly-trends")
-async def yearly_trends():
+async def yearly_trends(
+    job_title: str = None,
+    company: str = None,
+    location: str = None,
+    job_type: str = None,
+    experience_bucket: str = None,
+    salary_bucket: str = None,
+    remote_only: bool = False,
+    top_n: int = 8,
+):
     """Return yearly job market trend data for the frontend trends page.
 
-    The response contains posting totals and year-over-year growth values
-    derived from the cleaned job market dataset.
+    The endpoint supports frontend filters for job title, company, location,
+    job type, remote-only, experience bucket, salary bucket, and top-N size.
     """
-    data = process_yearly_trends(all_data)
+    filters = {
+        "job_title": job_title,
+        "company": company,
+        "location": location,
+        "job_type": job_type,
+        "experience_bucket": experience_bucket,
+        "salary_bucket": salary_bucket,
+        "remote_only": remote_only,
+        "top_n": top_n,
+    }
+    data = process_yearly_trends(all_data, filters)
     if data:
         return data
     raise HTTPException(status_code=500, detail="Yearly trends data not available")
