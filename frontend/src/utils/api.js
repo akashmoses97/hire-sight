@@ -10,6 +10,14 @@ import axios from 'axios';
 // Base URL for API requests - uses environment variable or defaults to localhost
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
+// Derive backend root (strip trailing /api) for the health-check ping
+const BACKEND_ROOT = API_URL.replace(/\/api\/?$/, '');
+
+// Fire-and-forget ping to wake a cold Render instance before the user navigates to a data page
+export const pingBackend = () => {
+  axios.get(BACKEND_ROOT).catch(() => {});
+};
+
 // Fetch data for Sankey diagram showing job application pipeline [1]
 export const fetchPipelineData = async (filters = {}) => {
   try {
@@ -107,6 +115,16 @@ export const fetchRoleHeatmap = async () => {
   } catch (error) {
     console.error('Error fetching role heatmap data:', error);
     throw error;
+  }
+};
+
+export const fetchPipelineHighlights = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/pipeline/highlights`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching pipeline highlights:', error);
+    return null;
   }
 };
 

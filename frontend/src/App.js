@@ -40,9 +40,20 @@ function App() {
       <div className="App">
         <header className="App-header">
           <div className="header-content">
-            <div>
-              <h1>Hire Sight</h1>
-              <p>Visual Analytics for Tech Job Search Pipeline</p>
+            <div className="brand-lockup">
+              <div className="brand-mark" aria-hidden="true">
+                <span className="brand-mark-core" />
+                <span className="brand-mark-ring brand-mark-ring-1" />
+                <span className="brand-mark-ring brand-mark-ring-2" />
+              </div>
+              <div className="brand-copy">
+                <h1>Hire Sight</h1>
+                <div className="brand-meta" aria-label="Product capabilities">
+                  <span>Pipeline analytics</span>
+                  <span>Role heatmaps</span>
+                  <span>Strategy guidance</span>
+                </div>
+              </div>
             </div>
             <button className="theme-toggle" onClick={toggleTheme} type="button" aria-label="Toggle light and dark mode" title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}>
               <span className="theme-toggle-icon" aria-hidden="true">{theme === 'light' ? '🌙' : '☀️'}</span>

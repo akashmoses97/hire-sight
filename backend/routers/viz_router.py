@@ -5,7 +5,7 @@ including pipeline, timeline, yearly trends, and role heatmap views.
 """
 
 from fastapi import APIRouter, HTTPException
-from services.pipeline_service import process_pipeline_data, get_pipeline_by_filters, get_all_roles, get_all_companies, get_all_job_types, get_all_platforms
+from services.pipeline_service import process_pipeline_data, get_pipeline_by_filters, get_all_roles, get_all_companies, get_all_job_types, get_all_platforms, get_pipeline_highlights
 from services.timeline_service import process_timeline_data, get_timeline_by_filters
 from services.trends_service import process_yearly_trends
 from services.trends_service import process_role_heatmap_data
@@ -61,6 +61,18 @@ async def pipeline_job_types():
 async def pipeline_platforms():
     """Return distinct application platforms that can be used in filters."""
     return get_all_platforms(all_data)
+
+@router.get("/pipeline/highlights")
+async def pipeline_highlights():
+    """Return standout entries per filter dimension to guide filter selection.
+
+    The response surfaces the top company by volume, best-callback role,
+    top platform, and best job type so the frontend can show quick-filter shortcuts.
+    """
+    data = get_pipeline_highlights(all_data)
+    if data:
+        return data
+    raise HTTPException(status_code=500, detail="Highlights data not available")
 
 @router.get("/timeline")
 async def timeline_data(job_role: str = None, company_name: str = None, job_type: str = None, platform: str = None):
