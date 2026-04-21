@@ -81,12 +81,44 @@ MONTH_LABELS = {
     12: "Dec",
 }
 
+REASON_CATEGORY_PATTERNS = [
+    ("Technical Skills", ["technical skill", "technical skills", "coding", "programming", "software development"]),
+    ("AI / Machine Learning", [" ai ", " ml ", "machine learning", "deep learning", "neural network", "llm"]),
+    ("Leadership", ["leadership", "leader", "management", "managerial", "senior position"]),
+    ("Communication", ["communication", "communicate", "interpersonal", "presentation", "stakeholder"]),
+    ("System Design", ["system design", "architecture", "architectural", "design expertise", "scalability"]),
+    ("Experience Level", ["experience", "background", "years", "senior", "junior", "entry level", "mid-level"]),
+    ("Culture Fit", ["culture fit", "team fit", "organizational fit", "fit for the role", "cultural fit"]),
+    ("Domain Knowledge", ["domain knowledge", "industry knowledge", "business knowledge", "domain expertise"]),
+    ("Problem Solving", ["problem solving", "analytical", "critical thinking", "troubleshooting"]),
+    ("Project Experience", ["project experience", "project work", "portfolio", "hands-on project", "practical experience"]),
+    ("Relevant Tools", ["tooling", "tools", "framework", "frameworks", "technology stack", "tech stack", "platform experience"]),
+    ("Collaboration", ["collaboration", "cross-functional", "teamwork", "worked with teams", "collaborative"]),
+    ("Adaptability", ["adaptability", "adaptable", "learning quickly", "fast learner", "flexibility"]),
+    ("Role Alignment", ["role alignment", "aligned with the role", "not aligned", "mismatch", "role fit"]),
+    ("Education / Certification", ["education", "degree", "academic background", "certification", "certified"]),
+    ("Strategic Thinking", ["strategic thinking", "strategy", "strategic", "vision"]),
+]
+
 
 def _normalize_role(role):
     """Normalize a raw recruitment role into a display-friendly category."""
     cleaned = str(role).strip()
     lowered = cleaned.lower()
     return ROLE_MAPPING.get(lowered, cleaned.title())
+
+
+def _categorize_reason(reason):
+    """Map free-text decision reasons into a compact set of heatmap categories."""
+    text = f" {str(reason).strip().lower()} "
+    if not text:
+        return "Other"
+
+    for category, patterns in REASON_CATEGORY_PATTERNS:
+        if any(pattern in text for pattern in patterns):
+            return category
+
+    return "Other"
 
 
 def _safe_rate(numerator: int, denominator: int) -> float:
@@ -644,6 +676,64 @@ def process_role_heatmap_data(all_data):
         data.append(
             {
                 "role": role,
+                "selected_rate": round(float(row["select"]), 4),
+                "rejected_rate": round(float(row["reject"]), 4),
+                "selected_count": selected_count,
+                "rejected_count": rejected_count,
+                "total": total,
+            }
+        )
+
+    return {
+        "outcomes": ["Selected %", "Rejected %"],
+        "data": data,
+    }
+
+
+def process_reason_heatmap_data(all_data):
+    """Build reason-category selection and rejection metrics for the heatmap."""
+    recruitment_df = all_data.get("ai_recruitment")
+    if recruitment_df is None or recruitment_df.empty:
+        return None
+
+    columns = {column.lower(): column for column in recruitment_df.columns}
+    reason_column = columns.get("reason_for_decision")
+    decision_column = columns.get("decision")
+
+    if reason_column is None or decision_column is None:
+        return None
+
+    df = recruitment_df.loc[:, [reason_column, decision_column]].copy()
+    df.columns = ["reason", "decision"]
+
+    df["reason"] = df["reason"].astype(str).str.strip()
+    df["decision"] = df["decision"].astype(str).str.strip().str.lower()
+    df = df[(df["reason"] != "") & (df["decision"].isin(["select", "reject"]))]
+
+    if df.empty:
+        return None
+
+    df["reason_category"] = df["reason"].apply(_categorize_reason)
+
+    counts = (
+        df.groupby(["reason_category", "decision"])
+        .size()
+        .unstack(fill_value=0)
+        .reindex(columns=["select", "reject"], fill_value=0)
+    )
+
+    totals = counts.sum(axis=1)
+    rates = counts.div(totals, axis=0).fillna(0)
+    rates = rates.sort_values(by="select", ascending=False)
+
+    data = []
+    for reason, row in rates.iterrows():
+        selected_count = int(counts.loc[reason, "select"])
+        rejected_count = int(counts.loc[reason, "reject"])
+        total = int(totals.loc[reason])
+        data.append(
+            {
+                "reason": reason,
                 "selected_rate": round(float(row["select"]), 4),
                 "rejected_rate": round(float(row["reject"]), 4),
                 "selected_count": selected_count,

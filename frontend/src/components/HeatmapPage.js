@@ -8,20 +8,25 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import HeatMap from './HeatMap';
-import { fetchRoleHeatmap } from '../utils/api';
+import { fetchRoleHeatmap, fetchReasonHeatmap } from '../utils/api';
 
 const HeatmapPage = () => {
   const [heatmapData, setHeatmapData] = useState(null);
+  const [reasonHeatmapData, setReasonHeatmapData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        // This page only depends on one heatmap payload, so local page-level
-        // loading state is enough.
-        const data = await fetchRoleHeatmap();
-        setHeatmapData(data);
+        // Load both heatmaps with the same page-level loading flow used by
+        // the existing role heatmap.
+        const [roleData, reasonData] = await Promise.all([
+          fetchRoleHeatmap(),
+          fetchReasonHeatmap(),
+        ]);
+        setHeatmapData(roleData);
+        setReasonHeatmapData(reasonData);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -40,8 +45,9 @@ const HeatmapPage = () => {
         <Link to="/" className="btn btn-outline-future mb-3">← Back to Home</Link>
       </div>
       <h2 className="page-title mb-2">Role Heatmap</h2>
-      <p className="page-subtitle">Conversion rates by role across different stages.</p>
-      <HeatMap data={heatmapData} />
+      <p className="page-subtitle">Selection and rejection rates by role and decision reason.</p>
+      <HeatMap data={heatmapData} labelKey="role" title="Selection and Rejection Rates by Job Role" />
+      <HeatMap data={reasonHeatmapData} labelKey="reason" title="Selection and Rejection Rates by Decision Reason" />
     </div>
   );
 };
