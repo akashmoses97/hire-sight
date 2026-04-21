@@ -149,6 +149,16 @@ export const fetchRoleHeatmap = async () => {
   }
 };
 
+export const fetchReasonHeatmap = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/reason-heatmap`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching reason heatmap data:', error);
+    throw error;
+  }
+};
+
 export const fetchPipelineHighlights = async () => {
   try {
     const response = await axios.get(`${API_URL}/pipeline/highlights`);

@@ -5,7 +5,7 @@
  * from the recruitment dataset returned by the backend heatmap endpoint.
  */
 
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import * as d3 from 'd3';
 
 /*
@@ -33,8 +33,20 @@ const HeatMap = ({ data }) => {
 
 const formatPercent = d3.format('.0%');
 
-const HeatMap = ({ data }) => {
+const HeatMap = ({ data, labelKey = 'role', title = 'Selection and Rejection Rates by Job Role' }) => {
   const svgRef = useRef(null);
+  const [theme, setTheme] = useState(
+    document.documentElement.getAttribute('data-theme') || 'dark'
+  );
+  const idsRef = useRef({
+    panelGradient: `heatmap-panel-gradient-${Math.random().toString(36).slice(2, 10)}`,
+    glowLeft: `heatmap-glow-left-${Math.random().toString(36).slice(2, 10)}`,
+    glowRight: `heatmap-glow-right-${Math.random().toString(36).slice(2, 10)}`,
+    legendCard: `heatmap-legend-card-${Math.random().toString(36).slice(2, 10)}`,
+    panelShadow: `heatmap-panel-shadow-${Math.random().toString(36).slice(2, 10)}`,
+    softGlow: `heatmap-soft-glow-${Math.random().toString(36).slice(2, 10)}`,
+    legendGradient: `heatmap-gradient-${Math.random().toString(36).slice(2, 10)}`,
+  });
 
   const chartData = useMemo(() => {
     if (!data?.data?.length) {
@@ -44,17 +56,17 @@ const HeatMap = ({ data }) => {
     // Flatten each role into one cell per outcome so D3 can bind rectangles
     // directly to role/outcome combinations.
     const outcomes = data.outcomes ?? ['Selected %', 'Rejected %'];
-    const roles = data.data.map((item) => item.role);
+    const labels = data.data.map((item) => item[labelKey]);
     const cells = data.data.flatMap((item) => [
       {
-        role: item.role,
+        label: item[labelKey],
         outcome: outcomes[0],
         value: item.selected_rate,
         count: item.selected_count,
         total: item.total,
       },
       {
-        role: item.role,
+        label: item[labelKey],
         outcome: outcomes[1],
         value: item.rejected_rate,
         count: item.rejected_count,
@@ -69,8 +81,22 @@ const HeatMap = ({ data }) => {
     const domainMin = Math.max(0, minValue - extentPadding);
     const domainMax = Math.min(1, maxValue + extentPadding);
 
-    return { outcomes, roles, cells, domainMin, domainMax };
-  }, [data]);
+    return { outcomes, labels, cells, domainMin, domainMax };
+  }, [data, labelKey]);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const observer = new MutationObserver(() => {
+      setTheme(root.getAttribute('data-theme') || 'dark');
+    });
+
+    observer.observe(root, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (!chartData || !svgRef.current) {
@@ -78,6 +104,7 @@ const HeatMap = ({ data }) => {
     }
 
     const svg = d3.select(svgRef.current);
+    const titleColor = theme === 'light' ? '#000000' : '#f8fafc';
     // Rebuild the SVG contents on each update to avoid leftover marks from a previous render.
     svg.selectAll('*').remove();
 
@@ -85,7 +112,7 @@ const HeatMap = ({ data }) => {
     const cellWidth = 196;
     const cellHeight = 46;
     const width = margin.left + margin.right + chartData.outcomes.length * cellWidth;
-    const height = margin.top + margin.bottom + chartData.roles.length * cellHeight;
+    const height = margin.top + margin.bottom + chartData.labels.length * cellHeight;
 
     svg.attr('viewBox', `0 0 ${width} ${height}`);
     svg.attr('width', '100%');
@@ -104,7 +131,7 @@ const HeatMap = ({ data }) => {
 
     const y = d3
       .scaleBand()
-      .domain(chartData.roles)
+      .domain(chartData.labels)
       .range([margin.top, height - margin.bottom])
       .paddingInner(0.08);
 
@@ -112,13 +139,14 @@ const HeatMap = ({ data }) => {
     const panelX = 26;
     const panelY = margin.top - 44;
     const panelWidth = width - margin.right - panelX + 24;
-    const panelHeight = chartData.roles.length * cellHeight + 74;
+    const panelHeight = chartData.labels.length * cellHeight + 74;
 
     const defs = svg.append('defs');
+    const ids = idsRef.current;
     // Define reusable gradients and shadows up front for the panel, glow, and legend styling.
     const panelGradient = defs
       .append('linearGradient')
-      .attr('id', 'heatmap-panel-gradient')
+      .attr('id', ids.panelGradient)
       .attr('x1', '0%')
       .attr('x2', '100%')
       .attr('y1', '0%')
@@ -130,7 +158,7 @@ const HeatMap = ({ data }) => {
 
     const bgGlowLeft = defs
       .append('radialGradient')
-      .attr('id', 'heatmap-glow-left')
+      .attr('id', ids.glowLeft)
       .attr('cx', '0%')
       .attr('cy', '0%')
       .attr('r', '80%');
@@ -139,7 +167,7 @@ const HeatMap = ({ data }) => {
 
     const bgGlowRight = defs
       .append('radialGradient')
-      .attr('id', 'heatmap-glow-right')
+      .attr('id', ids.glowRight)
       .attr('cx', '100%')
       .attr('cy', '100%')
       .attr('r', '85%');
@@ -148,7 +176,7 @@ const HeatMap = ({ data }) => {
 
     const legendCardGradient = defs
       .append('linearGradient')
-      .attr('id', 'heatmap-legend-card')
+      .attr('id', ids.legendCard)
       .attr('x1', '0%')
       .attr('x2', '0%')
       .attr('y1', '0%')
@@ -156,10 +184,10 @@ const HeatMap = ({ data }) => {
     legendCardGradient.append('stop').attr('offset', '0%').attr('stop-color', '#1a2438');
     legendCardGradient.append('stop').attr('offset', '100%').attr('stop-color', '#111827');
 
-    const shadow = defs.append('filter').attr('id', 'heatmap-panel-shadow').attr('x', '-20%').attr('y', '-20%').attr('width', '140%').attr('height', '140%');
+    const shadow = defs.append('filter').attr('id', ids.panelShadow).attr('x', '-20%').attr('y', '-20%').attr('width', '140%').attr('height', '140%');
     shadow.append('feDropShadow').attr('dx', 0).attr('dy', 12).attr('stdDeviation', 18).attr('flood-color', '#000000').attr('flood-opacity', 0.28);
 
-    const softGlow = defs.append('filter').attr('id', 'heatmap-soft-glow').attr('x', '-30%').attr('y', '-30%').attr('width', '160%').attr('height', '160%');
+    const softGlow = defs.append('filter').attr('id', ids.softGlow).attr('x', '-30%').attr('y', '-30%').attr('width', '160%').attr('height', '160%');
     softGlow.append('feDropShadow').attr('dx', 0).attr('dy', 0).attr('stdDeviation', 8).attr('flood-color', '#ffffff').attr('flood-opacity', 0.14);
 
     root
@@ -169,10 +197,10 @@ const HeatMap = ({ data }) => {
       .attr('width', panelWidth)
       .attr('height', panelHeight)
       .attr('rx', 22)
-      .attr('fill', 'url(#heatmap-panel-gradient)')
+      .attr('fill', `url(#${ids.panelGradient})`)
       .attr('stroke', '#334155')
       .attr('stroke-width', 1.1)
-      .style('filter', 'url(#heatmap-panel-shadow)');
+      .style('filter', `url(#${ids.panelShadow})`);
 
     root
       .append('rect')
@@ -181,7 +209,7 @@ const HeatMap = ({ data }) => {
       .attr('width', panelWidth)
       .attr('height', panelHeight)
       .attr('rx', 22)
-      .attr('fill', 'url(#heatmap-glow-left)');
+      .attr('fill', `url(#${ids.glowLeft})`);
 
     root
       .append('rect')
@@ -190,17 +218,17 @@ const HeatMap = ({ data }) => {
       .attr('width', panelWidth)
       .attr('height', panelHeight)
       .attr('rx', 22)
-      .attr('fill', 'url(#heatmap-glow-right)');
+      .attr('fill', `url(#${ids.glowRight})`);
 
     root
       .append('text')
       .attr('x', width / 2)
       .attr('y', 36)
       .attr('text-anchor', 'middle')
-      .attr('fill', '#000000')
+      .attr('fill', titleColor)
       .attr('font-size', 30)
       .attr('font-weight', 700)
-      .text('Selection and Rejection Rates by Job Role');
+      .text(title);
 
     root
       .append('line')
@@ -219,7 +247,7 @@ const HeatMap = ({ data }) => {
       .attr('y2', 66)
       .attr('stroke', '#60a5fa')
       .attr('stroke-width', 2.5)
-      .style('filter', 'url(#heatmap-soft-glow)');
+      .style('filter', `url(#${ids.softGlow})`);
 
     root
       .append('line')
@@ -229,7 +257,7 @@ const HeatMap = ({ data }) => {
       .attr('y2', 66)
       .attr('stroke', '#fb923c')
       .attr('stroke-width', 2.5)
-      .style('filter', 'url(#heatmap-soft-glow)');
+      .style('filter', `url(#${ids.softGlow})`);
 
     root
       .append('g')
@@ -260,7 +288,7 @@ const HeatMap = ({ data }) => {
     root
       .append('g')
       .selectAll('text')
-      .data(chartData.roles)
+      .data(chartData.labels)
       .join('text')
       .attr('x', margin.left - 12)
       .attr('y', (d) => y(d) + y.bandwidth() / 2)
@@ -274,7 +302,7 @@ const HeatMap = ({ data }) => {
     root
       .append('g')
       .selectAll('line')
-      .data(chartData.roles)
+      .data(chartData.labels)
       .join('line')
       .attr('x1', margin.left)
       .attr('x2', width - margin.right)
@@ -288,7 +316,7 @@ const HeatMap = ({ data }) => {
       .selectAll('g')
       .data(chartData.cells)
       .join('g')
-      .attr('transform', (d) => `translate(${x(d.outcome)},${y(d.role)})`);
+      .attr('transform', (d) => `translate(${x(d.outcome)},${y(d.label)})`);
 
     cells
       .append('rect')
@@ -304,7 +332,7 @@ const HeatMap = ({ data }) => {
       .append('title')
       .text(
         (d) =>
-          `${d.role}\n${d.outcome}: ${formatPercent(d.value)}\nCount: ${d.count} of ${d.total}`
+          `${d.label}\n${d.outcome}: ${formatPercent(d.value)}\nCount: ${d.count} of ${d.total}`
       );
 
     cells
@@ -330,13 +358,12 @@ const HeatMap = ({ data }) => {
       .text((d) => formatPercent(d.value));
 
     const legendWidth = 18;
-    const legendHeight = Math.min(280, Math.max(190, chartData.roles.length * 7));
+    const legendHeight = Math.min(280, Math.max(190, chartData.labels.length * 7));
     const legendX = width - margin.right + 58;
     const legendY = margin.top + 18;
-    const legendId = 'heatmap-gradient';
     const gradient = defs
       .append('linearGradient')
-      .attr('id', legendId)
+      .attr('id', ids.legendGradient)
       .attr('x1', '0%')
       .attr('x2', '0%')
       .attr('y1', '100%')
@@ -358,7 +385,7 @@ const HeatMap = ({ data }) => {
       .attr('width', 92)
       .attr('height', legendHeight + 54)
       .attr('rx', 22)
-      .attr('fill', 'url(#heatmap-legend-card)')
+      .attr('fill', `url(#${ids.legendCard})`)
       .attr('stroke', '#64748b')
       .attr('stroke-width', 1.2)
       .style('filter', 'drop-shadow(0 12px 24px rgba(0, 0, 0, 0.28))');
@@ -373,7 +400,7 @@ const HeatMap = ({ data }) => {
       .attr('stroke', '#93c5fd')
       .attr('stroke-opacity', 0.35)
       .attr('stroke-width', 1.1)
-      .attr('fill', `url(#${legendId})`);
+      .attr('fill', `url(#${ids.legendGradient})`);
 
     const legendScale = d3
       .scaleLinear()
@@ -409,7 +436,7 @@ const HeatMap = ({ data }) => {
       .text('Rate');
 
     return undefined;
-  }, [chartData]);
+  }, [chartData, title, theme]);
 
   if (!data) {
     return <div>Loading role conversion data...</div>;

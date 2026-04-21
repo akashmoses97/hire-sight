@@ -8,7 +8,7 @@ from fastapi import APIRouter, HTTPException
 from services.pipeline_service import process_pipeline_data, get_pipeline_by_filters, get_all_roles, get_all_companies, get_all_job_types, get_all_platforms, get_pipeline_highlights
 from services.timeline_service import process_timeline_data, get_timeline_by_filters
 from services.trends_service import process_yearly_trends, get_yearly_trend_filter_options
-from services.trends_service import process_role_heatmap_data
+from services.trends_service import process_role_heatmap_data, process_reason_heatmap_data
 from data_store import all_data  # Import the global data
 
 router = APIRouter()
@@ -149,6 +149,15 @@ async def role_heatmap():
     if data:
         return data
     raise HTTPException(status_code=500, detail="Role heatmap data not available")
+
+
+@router.get("/reason-heatmap")
+async def reason_heatmap():
+    """Return reason-category selection and rejection rates for the heatmap view."""
+    data = process_reason_heatmap_data(all_data)
+    if data:
+        return data
+    raise HTTPException(status_code=500, detail="Reason heatmap data not available")
 
 # Additional filter endpoints
 @router.get("/pipeline/by-role/{role}")
