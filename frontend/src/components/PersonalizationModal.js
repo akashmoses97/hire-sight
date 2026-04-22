@@ -154,7 +154,7 @@ const PersonalizationModal = ({ isOpen, onClose, onSubmit, roles, jobTypes }) =>
       <div className="modal-dialog modal-dialog-centered modal-lg personalization-dialog">
         <div className="modal-content personalization-modal">
           <div className="modal-header">
-            <h5 className="modal-title">🎯 Personalize Your Strategy</h5>
+            <h5 className="modal-title">Personalize Your Strategy</h5>
             <button
               type="button"
               className="btn-close"

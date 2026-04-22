@@ -4,6 +4,8 @@ This module lists the datasets used by Hire Sight along with file names,
 descriptions, and Google Drive identifiers needed for loading or download.
 """
 
+from __future__ import annotations
+
 # Dictionary containing information about each dataset
 KAGGLE_DATASETS = {
     'job_applications': {

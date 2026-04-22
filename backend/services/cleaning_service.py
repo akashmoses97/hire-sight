@@ -4,6 +4,8 @@ This service standardizes raw CSV inputs, cleans text and date fields,
 derives helper columns, and converts statuses into analytics-friendly values.
 """
 
+from __future__ import annotations
+
 import re
 import pandas as pd
 

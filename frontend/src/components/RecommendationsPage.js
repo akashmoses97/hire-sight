@@ -136,7 +136,7 @@ const RecommendationsPage = () => {
       <div className="container-lg recommendations-container">
         <div className="page-header">
           <div>
-            <h1 className="page-title">Your Personalized Job Search Strategy 🎯</h1>
+            <h1 className="page-title">Your Personalized Job Search Strategy</h1>
             <p className="page-subtitle">
               Based on your profile and market data, here's how to optimize your job search.
             </p>
@@ -244,7 +244,7 @@ const RecommendationsPage = () => {
             />
 
             {/* Benchmark Comparison */}
-            <div className="benchmark-section">
+            {/* <div className="benchmark-section">
               <h3>📊 Baseline vs. Market Benchmarks</h3>
               <div className="benchmark-grid">
                 <div className="benchmark-card">
@@ -268,7 +268,7 @@ const RecommendationsPage = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* CTA */}
             <div className="cta-section">

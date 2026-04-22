@@ -20,7 +20,7 @@ const RecommendationCards = ({ insights, userProfile }) => {
 
   const cards = [
     {
-      title: '🎯 Role Selection',
+      title: 'Role Selection',
       description: insights.role_selection_advice || 'No advice available',
       icon: '🎯',
       color: 'primary',
