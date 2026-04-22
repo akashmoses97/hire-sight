@@ -267,21 +267,13 @@ const Home = () => {
         </div>
 
         <div className="home-hero-visual" aria-hidden="true">
-          <div className="hero-preview-card">
-            <div className="hpc-label">Applications by Stage</div>
-            <div className="hpc-bars">
-              {[90, 62, 45, 28, 14].map((h, i) => (
-                <div key={i} className="hpc-bar-wrap">
-                  <div className="hpc-bar" style={{ height: `${h}%` }} />
-                  <div className="hpc-bar-val">{h}%</div>
-                </div>
-              ))}
-            </div>
-            <div className="hpc-labels">
-              {['Applications', 'Callbacks', 'Interviews', 'Rejects', 'Offers'].map(l => (
-                <span key={l}>{l}</span>
-              ))}
-            </div>
+          <div className="hero-preview-card hero-preview-image-card">
+            <img
+              className="home-hero-image"
+              src="/home_img.png"
+              alt="Hire Sight dashboard preview"
+              draggable="false"
+            />
           </div>
         </div>
       </div>

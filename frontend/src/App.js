@@ -7,7 +7,7 @@
 
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import PipelinePage from './components/PipelinePage';
 import HeatmapPage from './components/HeatmapPage';
@@ -46,14 +46,14 @@ function App() {
                 <span className="brand-mark-ring brand-mark-ring-1" />
                 <span className="brand-mark-ring brand-mark-ring-2" />
               </div>
-              <div className="brand-copy">
+              <Link to="/" className="brand-copy brand-copy-link" aria-label="Go to the Hire Sight home page">
                 <h1>Hire Sight</h1>
                 <div className="brand-meta" aria-label="Product capabilities">
                   <span>Pipeline analytics</span>
                   <span>Role heatmaps</span>
                   <span>Strategy guidance</span>
                 </div>
-              </div>
+              </Link>
             </div>
             <button className="theme-toggle" onClick={toggleTheme} type="button" aria-label="Toggle light and dark mode" title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}>
               <span className="theme-toggle-icon" aria-hidden="true">{theme === 'light' ? '🌙' : '☀️'}</span>

@@ -6,18 +6,17 @@
  */
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
 import PersonalizationModal from './PersonalizationModal';
 import RecommendationCards from './RecommendationCards';
 import BeforeAfterComparison from './BeforeAfterComparison';
 import ImprovementSummary from './ImprovementSummary';
 import PersonalizationVisuals from './PersonalizationVisuals';
+import SankeyDiagram from './SankeyDiagram';
 import { fetchRecommendations, fetchPipelineRoles, fetchPipelineJobTypes } from '../utils/api';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/RecommendationsPage.css';
 
 const RecommendationsPage = () => {
-  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -25,11 +24,6 @@ const RecommendationsPage = () => {
   const [userProfile, setUserProfile] = useState(null);
   const [roles, setRoles] = useState([]);
   const [jobTypes, setJobTypes] = useState([]);
-
-  const safePercent = (numerator, denominator) => {
-    if (!denominator || denominator <= 0) return '0.0';
-    return ((numerator / denominator) * 100).toFixed(1);
-  };
 
   const normalizeProfile = useCallback((profile) => ({
     targetRole: profile?.targetRole || '',
@@ -121,6 +115,20 @@ const RecommendationsPage = () => {
 
   const handleEditProfile = () => {
     setIsModalOpen(true);
+  };
+
+  const formSankeyData = userProfile ? {
+    applications: Number(userProfile.currentApplications || recommendations?.user_metrics?.applications || 0),
+    callbacks: Number(userProfile.currentCallbacks || recommendations?.user_metrics?.callbacks || 0),
+    interviews: Number(userProfile.currentInterviews || recommendations?.user_metrics?.interviews || 0),
+    offers: Number(userProfile.currentOffers || recommendations?.user_metrics?.offers || 0),
+  } : null;
+
+  const feedbackUrl = process.env.REACT_APP_FEEDBACK_URL || 'mailto:hire-sight-feedback@example.com?subject=Hire%20Sight%20Feedback';
+
+  const handleFeedbackClick = () => {
+    if (!feedbackUrl) return;
+    window.open(feedbackUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -231,6 +239,12 @@ const RecommendationsPage = () => {
               targetRole={userProfile.targetRole}
             />
 
+            {formSankeyData && Object.values(formSankeyData).some((value) => Number(value) > 0) && (
+              <div className="recommendations-sankey">
+                <SankeyDiagram data={formSankeyData} />
+              </div>
+            )}
+
             {/* LLM Insights Cards */}
             <RecommendationCards
               insights={recommendations.llm_insights}
@@ -273,14 +287,15 @@ const RecommendationsPage = () => {
             {/* CTA */}
             <div className="cta-section">
               <button
-                className="btn btn-primary btn-lg"
-                onClick={() => navigate('/pipeline')}
+                className="btn btn-outline-primary btn-lg"
+                onClick={handleFeedbackClick}
+                title="Open feedback in a new tab"
                 type="button"
               >
-                View Your Pipeline 📈
+                Give Feedback ↗
               </button>
               <button
-                className="btn btn-outline-primary btn-lg"
+                className="btn btn-primary btn-lg"
                 onClick={() => setIsModalOpen(true)}
                 type="button"
               >
