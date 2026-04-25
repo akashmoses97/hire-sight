@@ -1,8 +1,8 @@
 /**
- * BeforeAfterComparison.js
+ * Before/after funnel comparison using D3.
  *
- * D3-powered visualization comparing user's current pipeline metrics vs. predicted outcomes.
- * Uses dual Sankey/funnel format for clear before/after contrast.
+ * This component renders side-by-side horizontal bar funnels comparing the
+ * baseline pipeline stage counts against the predicted post-recommendation values.
  */
 
 import React, { useEffect, useRef } from 'react';

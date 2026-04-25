@@ -8,29 +8,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import * as d3 from 'd3';
 
-/*
-Previous placeholder kept for reference. The intent was to replace this JSON dump
-with a real D3 heatmap while keeping the same component name and API-driven data flow.
-
-import React from 'react';
-
-const HeatMap = ({ data }) => {
-  if (!data) {
-    return <div>Loading role conversion data...</div>;
-  }
-
-  return (
-    <div className="heatmap-container">
-      <div className="placeholder-message">
-        <p>Role Conversion Heatmap Placeholder</p>
-        <p>Will visualize conversion rates across different roles</p>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      </div>
-    </div>
-  );
-};
-*/
-
 const formatPercent = d3.format('.0%');
 
 const HeatMap = ({ data, labelKey = 'role', title = 'Selection and Rejection Rates by Job Role' }) => {

@@ -1,8 +1,8 @@
 /**
- * RecommendationsPage.js
+ * Personalized recommendations page (F5).
  *
- * Main page for personalized recommendations (F5).
- * Orchestrates profile form, LLM insights generation, and visualization display.
+ * This page orchestrates the profile form, backend recommendation fetch,
+ * LLM insights display, and before/after pipeline visualization.
  */
 
 import React, { useState, useEffect, useCallback } from 'react';
@@ -124,7 +124,7 @@ const RecommendationsPage = () => {
     offers: Number(userProfile.currentOffers || recommendations?.user_metrics?.offers || 0),
   } : null;
 
-  const feedbackUrl = process.env.REACT_APP_FEEDBACK_URL || 'mailto:hire-sight-feedback@example.com?subject=Hire%20Sight%20Feedback';
+  const feedbackUrl = 'https://docs.google.com/forms/d/1lbYMDdpPm9rFTKFpFgbag34-tKaDgV3ofcUjeIDPN3s/viewform' || 'mailto:hire-sight-feedback@example.com?subject=Hire%20Sight%20Feedback';
 
   const handleFeedbackClick = () => {
     if (!feedbackUrl) return;

@@ -18,7 +18,7 @@ export const pingBackend = () => {
   axios.get(BACKEND_ROOT).catch(() => {});
 };
 
-// Fetch data for Sankey diagram showing job application pipeline [1]
+// Fetch stage counts and conversion rates for the Sankey pipeline diagram.
 export const fetchPipelineData = async (filters = {}) => {
   try {
     const params = new URLSearchParams();
@@ -114,7 +114,7 @@ export const fetchYearlyTrendFilterOptions = async () => {
   }
 };
 
-// Fetch yearly trends data for job market visualization [2]
+// Fetch yearly job market trend data with optional filter parameters.
 export const fetchYearlyTrends = async (filters = {}) => {
   try {
     const params = new URLSearchParams();
@@ -138,7 +138,7 @@ export const fetchYearlyTrends = async (filters = {}) => {
   }
 };
 
-// Fetch role-based heatmap data for conversion rate comparison [1]
+// Fetch selection and rejection rates by role for the heatmap visualization.
 export const fetchRoleHeatmap = async () => {
   try {
     const response = await axios.get(`${API_URL}/role-heatmap`);

@@ -1,8 +1,8 @@
-"""
-llm_service.py
+"""LLM-powered recommendations service.
 
-Service for calling Hugging Face Inference API to generate personalized recommendations.
-Uses free tier models like Mistral or Llama 2.
+This module calls the Hugging Face Inference API (Mistral-7B by default) to generate
+personalised job search guidance. Falls back to data-driven advice when the API key
+is absent or all model endpoints fail.
 """
 
 import os

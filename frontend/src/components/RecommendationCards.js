@@ -1,8 +1,8 @@
 /**
- * RecommendationCards.js
+ * LLM insight cards for the recommendations page.
  *
- * Displays LLM-generated insights as styled cards.
- * Each card represents a recommendation category with supporting data.
+ * This component renders role selection, timing, volume, experience, and
+ * industry insights from the backend as a grid of styled recommendation cards.
  */
 
 import React from 'react';

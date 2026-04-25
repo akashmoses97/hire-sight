@@ -9,7 +9,6 @@ import pandas as pd
 import requests
 from utils.data_sources import KAGGLE_DATASETS
 
-# Replace the hardcoded datasets dictionary with:
 datasets = KAGGLE_DATASETS
 # Paths for data storage (anchored to backend/data, independent of cwd)
 BACKEND_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

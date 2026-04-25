@@ -1,7 +1,8 @@
 /**
- * ImprovementSummary.js
+ * Action plan summary for the recommendations page.
  *
- * Displays top 3 action items and quick wins for improving job search strategy.
+ * This component parses the LLM improvement summary into three numbered action
+ * items and renders them alongside a static set of quick-win suggestions.
  */
 
 import React from 'react';

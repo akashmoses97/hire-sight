@@ -1,3 +1,10 @@
+/**
+ * Landing page introducing the Hire Sight features.
+ *
+ * This component renders five feature cards linking to each analytics view
+ * and fires a backend ping on mount to warm up the Render cold-start.
+ */
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';

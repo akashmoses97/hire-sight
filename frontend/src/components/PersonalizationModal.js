@@ -1,9 +1,8 @@
 /**
- * PersonalizationModal.js
+ * Profile capture modal for personalized recommendations.
  *
- * Modal form that captures user profile information for personalized recommendations.
- * Opens automatically on first visit to recommendations page.
- * Persists profile data to sessionStorage for the current session.
+ * This modal collects target role, experience, job type, goals, and current
+ * pipeline counts, then persists the form data to sessionStorage for the session.
  */
 
 import React, { useState, useEffect } from 'react';

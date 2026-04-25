@@ -1,7 +1,7 @@
-"""
-resume_service.py
+"""PDF resume parsing service.
 
-Service for parsing PDF resumes and extracting experience, skills, companies, and roles.
+This module extracts years of experience, technical skills, company names, and job
+titles from uploaded resume PDFs to enrich the personalization pipeline.
 """
 
 import re
