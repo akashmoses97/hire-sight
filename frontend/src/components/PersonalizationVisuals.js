@@ -1,3 +1,10 @@
+/**
+ * Before/after pipeline comparison visuals for recommendations.
+ *
+ * This component renders funnel bar comparisons and conversion rate deltas
+ * between the user's current stats and predicted outcomes from the backend.
+ */
+
 import React from 'react';
 import '../styles/PersonalizationVisuals.css';
 

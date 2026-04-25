@@ -1,7 +1,7 @@
-"""
-personalization_service.py
+"""Personalization and benchmark analytics service.
 
-Service for computing personalized metrics and benchmarks for recommendations.
+This module computes user pipeline metrics, market benchmarks, role conversion
+analysis, timing patterns, and projected outcomes for the F5 recommendations feature.
 """
 
 from typing import Dict, Optional
@@ -12,6 +12,7 @@ from data_store import all_data
 
 
 def _to_non_negative_int(value, default=None):
+    """Parse a value to a non-negative integer, returning ``default`` on failure."""
     if value is None or value == "":
         return default
     try:

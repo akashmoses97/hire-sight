@@ -1,7 +1,7 @@
-"""
-recommendations_router.py
+"""Recommendations router for personalised F5 guidance.
 
-API routes for personalized recommendations (F5 feature).
+This router receives a user profile and optional resume, delegates to the
+personalization and LLM services, and returns structured job-search insights.
 """
 
 from fastapi import APIRouter, UploadFile, File, Form

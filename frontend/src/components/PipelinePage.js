@@ -1,3 +1,10 @@
+/**
+ * Pipeline dashboard page (F1 & F3).
+ *
+ * This page renders the Sankey funnel, filter bar, highlights cards, pipeline
+ * summary, key insights, and the activity timeline for the job search pipeline.
+ */
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SankeyDiagram from './SankeyDiagram';

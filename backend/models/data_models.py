@@ -7,19 +7,25 @@ timeline endpoints so payloads stay consistent across the backend.
 from pydantic import BaseModel
 from typing import Dict, List, Optional
 
-# Define data models for structured API responses
+# Pipeline visualization models
 class ConversionRates(BaseModel):
+    """Stage-to-stage conversion rate fractions for the pipeline view."""
+
     app_to_callback: float
     callback_to_interview: float
     interview_to_offer: float
 
 class RoleData(BaseModel):
+    """Application stage counts for a single job role."""
+
     applications: int
     callbacks: int
     interviews: int
     offers: int
 
 class PipelineData(BaseModel):
+    """Full pipeline payload: totals, conversion rates, and per-role breakdown."""
+
     applications: int
     callbacks: int
     interviews: int
@@ -28,6 +34,8 @@ class PipelineData(BaseModel):
     by_role: Dict[str, RoleData]
 
 class TimelineEntry(BaseModel):
+    """Monthly stage counts for one calendar period."""
+
     date: str
     applications: int
     callbacks: int
@@ -35,13 +43,15 @@ class TimelineEntry(BaseModel):
     offers: int
 
 class TimelineData(BaseModel):
-    timeline: List[TimelineEntry]
+    """Ordered list of monthly stage counts for the timeline chart."""
 
-# Add more models as needed for your visualizations
+    timeline: List[TimelineEntry]
 
 
 # Personalization models for F5 feature
 class UserProfile(BaseModel):
+    """User inputs collected by the recommendations form."""
+
     targetRole: str
     experienceLevel: str  # entry, mid, senior, lead
     jobType: str
@@ -56,6 +66,8 @@ class UserProfile(BaseModel):
 
 
 class ResumeData(BaseModel):
+    """Structured fields extracted from a parsed resume PDF."""
+
     experience_years: Optional[int] = None
     skills: List[str] = []
     companies: List[str] = []
@@ -63,6 +75,8 @@ class ResumeData(BaseModel):
 
 
 class BenchmarkMetrics(BaseModel):
+    """Market-average conversion rates for the user's target role."""
+
     avg_offer_rate: float = 0.0
     avg_callback_rate: float = 0.0
     avg_interview_rate: float = 0.0
@@ -71,6 +85,8 @@ class BenchmarkMetrics(BaseModel):
 
 
 class PredictedOutcomes(BaseModel):
+    """Projected pipeline stage counts after applying recommendations."""
+
     applications: int
     callbacks: int
     interviews: int
@@ -80,6 +96,8 @@ class PredictedOutcomes(BaseModel):
 
 
 class LLMInsights(BaseModel):
+    """Structured output fields returned by the LLM recommendations prompt."""
+
     role_selection_advice: str
     timing_strategy: str
     volume_optimization: str
@@ -90,6 +108,8 @@ class LLMInsights(BaseModel):
 
 
 class RecommendationResponse(BaseModel):
+    """Top-level recommendations response envelope."""
+
     user_metrics: Dict
     benchmark_metrics: BenchmarkMetrics
     predicted_outcomes: PredictedOutcomes
