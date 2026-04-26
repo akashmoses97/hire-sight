@@ -58,6 +58,12 @@ Enter your current pipeline metrics and target role; optionally upload your resu
 
 ---
 
+## High Level Diagram - System Overview
+
+<img width="2752" height="1536" alt="unnamed (1)" src="https://github.com/user-attachments/assets/0f0b279c-57c5-4fb4-b24a-172bb50d654d" />
+
+---
+
 ## Project Structure
 
 ```
